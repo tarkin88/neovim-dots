@@ -11,10 +11,10 @@ o.confirm = true -- Confirm to save changes before exiting modified buffer
 o.iskeyword = '@,48-57,_,192-255,-' -- Treat dash as `word` textobject part
 o.termguicolors = true
 o.autoread = true
-o.shortmess:append {
-    w = true,
-    s = true,
-}
+o.shortmess:append({
+  w = true,
+  s = true,
+})
 
 -- ui
 o.winborder = 'solid'
@@ -75,7 +75,6 @@ o.foldmethod = 'marker'
 o.foldmarker = '{{{,}}}' -- this is the default
 o.foldlevel = 0 -- start with all folds closed
 o.foldlevelstart = 0 -- open files with folds closed
-
 
 -- disable some default providers
 g.loaded_node_provider = 0
