@@ -1,8 +1,22 @@
 return {
   'nvim-treesitter/nvim-treesitter',
-  build = ':TSUpdate',
-  lazy = false,
-  version = false,
+  dependencies = {},
+  event = { 'BufReadPost', 'BufNewFile' },
+  cmd = {
+    'TSBufDisable',
+    'TSBufEnable',
+    'TSBufToggle',
+    'TSDisable',
+    'TSEnable',
+    'TSToggle',
+    'TSInstall',
+    'TSInstallInfo',
+    'TSInstallSync',
+    'TSModuleInfo',
+    'TSUninstall',
+    'TSUpdate',
+    'TSUpdateSync',
+  },
   dependencies = {
     {
       'nvim-treesitter/nvim-treesitter-context',
@@ -16,35 +30,45 @@ return {
       },
     },
   },
-  opts = {
-    auto_install = true,
-    sync_install = false,
-    ensure_installed = {
-      'bash',
-      'fish',
-      'gitcommit',
-      'graphql',
-      'javascript',
-      'json',
-      'json5',
-      'jsonc',
-      'lua',
-      'markdown',
-      'markdown_inline',
-      'python',
-      'query',
-      'rasi',
-      'regex',
-      'toml',
-      'tsx',
-      'typescript',
-      'yaml',
-    },
-    highlight = { enable = true },
-    indent = {
-      enable = true,
-      -- Treesitter unindents Yaml lists for some reason.
-      disable = { 'yaml' },
-    },
-  },
+  build = ':TSUpdate',
+  config = function()
+    local treesitter = require('nvim-treesitter.configs')
+
+    treesitter.setup({
+      ensure_installed = {
+        'bash',
+        'diff',
+        'dockerfile',
+        'fish',
+        'gitcommit',
+        'gitcommit',
+        'graphql',
+        'javascript',
+        'json',
+        'json5',
+        'jsonc',
+        'lua',
+        'markdown',
+        'markdown_inline',
+        'python',
+        'query',
+        'rasi',
+        'regex',
+        'toml',
+        'tsx',
+        'typescript',
+        'yaml',
+      },
+      ignore_install = {},
+      highlight = {
+        enable = true,
+        disable = { 'markdown' },
+      },
+      indent = { enable = true, disable = { 'yaml' } },
+      fold = { enable = true },
+    })
+
+    -- vim.o.foldmethod = 'expr'
+    -- vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
+  end,
 }

@@ -1,5 +1,9 @@
 local profiler = require('utils.profiler')
 
+-- profiler.start('colorscheme')
+-- vim.cmd.colorscheme('retrobox')
+-- profiler.stop('colorscheme')
+
 profiler.start('options')
 require('core.options')
 profiler.stop('options')
@@ -28,8 +32,8 @@ profiler.start('lazy')
 require('core.lazy')
 profiler.stop('lazy')
 
-profiler.start('colorscheme')
-vim.cmd.colorscheme('retrobox')
-profiler.stop('colorscheme')
+profiler.start('lsp')
+require('core.lsp')
+profiler.stop('lsp')
 
 profiler.report()

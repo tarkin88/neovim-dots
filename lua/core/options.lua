@@ -71,10 +71,12 @@ o.smartcase = true -- respect case if search pattern has upper case
 o.hlsearch = true -- highlight search results as you type.
 
 -- folding
-o.foldmethod = 'marker'
+o.foldmethod = 'indent'
 o.foldmarker = '{{{,}}}' -- this is the default
-o.foldlevel = 0 -- start with all folds closed
-o.foldlevelstart = 0 -- open files with folds closed
+o.foldlevel = 10 -- start with all fold open by default
+-- o.foldlevelstart = 0 -- open files with folds closed
+o.foldnestmax = 10 -- Limit number of fold levels
+o.foldtext = '' -- Show text under fold with its highlighting
 
 -- disable some default providers
 g.loaded_node_provider = 0
@@ -82,24 +84,24 @@ g.loaded_python3_provider = 0
 g.loaded_perl_provider = 0
 g.loaded_ruby_provider = 0
 
--- ╭──────────────────────────────────────────────────────────╮
--- │ ⬇️ Experimental, Neovim 0.12                             │
--- ╰──────────────────────────────────────────────────────────╯
-
-vim.schedule(function()
-  require('vim._extui').enable({
-    enable = true,
-    msg = {
-      target = 'msg',
-      timeout = 6000,
-    },
-  })
-  vim.api.nvim_create_autocmd('FileType', {
-    pattern = 'msg',
-    callback = function()
-      vim.opt_local.winblend = 50
-      vim.opt_local.winborder = 'none'
-      vim.opt_local.winhighlight = 'Normal:Comment,FloatBorder:Normal'
-    end,
-  })
-end)
+-- -- ╭──────────────────────────────────────────────────────────╮
+-- -- │ ⬇️ Experimental, Neovim 0.12                             │
+-- -- ╰──────────────────────────────────────────────────────────╯
+--
+-- vim.schedule(function()
+--   require('vim._extui').enable({
+--     enable = true,
+--     msg = {
+--       target = 'msg',
+--       timeout = 6000,
+--     },
+--   })
+--   vim.api.nvim_create_autocmd('FileType', {
+--     pattern = 'msg',
+--     callback = function()
+--       vim.opt_local.winblend = 50
+--       vim.opt_local.winborder = 'none'
+--       vim.opt_local.winhighlight = 'Normal:Comment,FloatBorder:Normal'
+--     end,
+--   })
+-- end)
