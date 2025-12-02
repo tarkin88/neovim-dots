@@ -1,10 +1,10 @@
 return {
-  'zbirenbaum/copilot.lua',
-  event = 'InsertEnter',
-  cmd = 'Copilot',
-  build = ':Copilot auth',
+  "zbirenbaum/copilot.lua",
+  event = "InsertEnter",
+  cmd = "Copilot",
+  build = ":Copilot auth",
   config = function()
-    require('copilot').setup({
+    require("copilot").setup({
       suggestion = { enabled = false },
       panel = { enabled = false },
       filetypes = {
@@ -18,7 +18,7 @@ return {
         gitcommit = true,
         gitrebase = true,
         sh = true,
-        ['*'] = false, -- disable for all other filetypes and ignore default `filetypes`
+        ["*"] = false, -- disable for all other filetypes and ignore default `filetypes`
       },
     })
   end,

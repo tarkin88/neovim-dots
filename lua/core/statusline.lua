@@ -1,4 +1,4 @@
-local icons = require('core.icons')
+local icons = require("core.icons")
 
 local M = {}
 
@@ -15,14 +15,14 @@ local statusline_hls = {}
 ---@param hl string
 ---@return string
 function M.get_or_create_hl(hl)
-  local hl_name = 'Statusline' .. hl
+  local hl_name = "Statusline" .. hl
 
   if not statusline_hls[hl] then
     -- If not in the cache, create the highlight group using the icon's foreground color
     -- and the statusline's background color.
-    local bg_hl = vim.api.nvim_get_hl(0, { name = 'StatusLine' })
+    local bg_hl = vim.api.nvim_get_hl(0, { name = "StatusLine" })
     local fg_hl = vim.api.nvim_get_hl(0, { name = hl })
-    vim.api.nvim_set_hl(0, hl_name, { bg = ('#%06x'):format(bg_hl.bg), fg = ('#%06x'):format(fg_hl.fg) })
+    vim.api.nvim_set_hl(0, hl_name, { bg = ("#%06x"):format(bg_hl.bg), fg = ("#%06x"):format(fg_hl.fg) })
     statusline_hls[hl] = true
   end
 
@@ -34,66 +34,66 @@ end
 function M.mode_component()
   -- Note that: \19 = ^S and \22 = ^V.
   local mode_to_str = {
-    ['n'] = 'NORMAL',
-    ['no'] = 'OP-PENDING',
-    ['nov'] = 'OP-PENDING',
-    ['noV'] = 'OP-PENDING',
-    ['no\22'] = 'OP-PENDING',
-    ['niI'] = 'NORMAL',
-    ['niR'] = 'NORMAL',
-    ['niV'] = 'NORMAL',
-    ['nt'] = 'NORMAL',
-    ['ntT'] = 'NORMAL',
-    ['v'] = 'VISUAL',
-    ['vs'] = 'VISUAL',
-    ['V'] = 'VISUAL',
-    ['Vs'] = 'VISUAL',
-    ['\22'] = 'VISUAL',
-    ['\22s'] = 'VISUAL',
-    ['s'] = 'SELECT',
-    ['S'] = 'SELECT',
-    ['\19'] = 'SELECT',
-    ['i'] = 'INSERT',
-    ['ic'] = 'INSERT',
-    ['ix'] = 'INSERT',
-    ['R'] = 'REPLACE',
-    ['Rc'] = 'REPLACE',
-    ['Rx'] = 'REPLACE',
-    ['Rv'] = 'VIRT REPLACE',
-    ['Rvc'] = 'VIRT REPLACE',
-    ['Rvx'] = 'VIRT REPLACE',
-    ['c'] = 'COMMAND',
-    ['cv'] = 'VIM EX',
-    ['ce'] = 'EX',
-    ['r'] = 'PROMPT',
-    ['rm'] = 'MORE',
-    ['r?'] = 'CONFIRM',
-    ['!'] = 'SHELL',
-    ['t'] = 'TERMINAL',
+    ["n"] = "NORMAL",
+    ["no"] = "OP-PENDING",
+    ["nov"] = "OP-PENDING",
+    ["noV"] = "OP-PENDING",
+    ["no\22"] = "OP-PENDING",
+    ["niI"] = "NORMAL",
+    ["niR"] = "NORMAL",
+    ["niV"] = "NORMAL",
+    ["nt"] = "NORMAL",
+    ["ntT"] = "NORMAL",
+    ["v"] = "VISUAL",
+    ["vs"] = "VISUAL",
+    ["V"] = "VISUAL",
+    ["Vs"] = "VISUAL",
+    ["\22"] = "VISUAL",
+    ["\22s"] = "VISUAL",
+    ["s"] = "SELECT",
+    ["S"] = "SELECT",
+    ["\19"] = "SELECT",
+    ["i"] = "INSERT",
+    ["ic"] = "INSERT",
+    ["ix"] = "INSERT",
+    ["R"] = "REPLACE",
+    ["Rc"] = "REPLACE",
+    ["Rx"] = "REPLACE",
+    ["Rv"] = "VIRT REPLACE",
+    ["Rvc"] = "VIRT REPLACE",
+    ["Rvx"] = "VIRT REPLACE",
+    ["c"] = "COMMAND",
+    ["cv"] = "VIM EX",
+    ["ce"] = "EX",
+    ["r"] = "PROMPT",
+    ["rm"] = "MORE",
+    ["r?"] = "CONFIRM",
+    ["!"] = "SHELL",
+    ["t"] = "TERMINAL",
   }
 
   -- Get the respective string to display.
-  local mode = mode_to_str[vim.api.nvim_get_mode().mode] or 'UNKNOWN'
+  local mode = mode_to_str[vim.api.nvim_get_mode().mode] or "UNKNOWN"
 
   -- Set the highlight group.
-  local hl = 'Other'
-  if mode:find('NORMAL') then
-    hl = 'Normal'
-  elseif mode:find('PENDING') then
-    hl = 'Pending'
-  elseif mode:find('VISUAL') then
-    hl = 'Visual'
-  elseif mode:find('INSERT') or mode:find('SELECT') then
-    hl = 'Insert'
-  elseif mode:find('COMMAND') or mode:find('TERMINAL') or mode:find('EX') then
-    hl = 'Command'
+  local hl = "Other"
+  if mode:find("NORMAL") then
+    hl = "Normal"
+  elseif mode:find("PENDING") then
+    hl = "Pending"
+  elseif mode:find("VISUAL") then
+    hl = "Visual"
+  elseif mode:find("INSERT") or mode:find("SELECT") then
+    hl = "Insert"
+  elseif mode:find("COMMAND") or mode:find("TERMINAL") or mode:find("EX") then
+    hl = "Command"
   end
 
   -- Construct the bubble-like component.
   return table.concat({
-    string.format('%%#StatuslineModeSeparator%s#', hl),
-    string.format('%%#StatuslineMode%s#%s', hl, mode),
-    string.format('%%#StatuslineModeSeparator%s#', hl),
+    string.format("%%#StatuslineModeSeparator%s#", hl),
+    string.format("%%#StatuslineMode%s#%s", hl, mode),
+    string.format("%%#StatuslineModeSeparator%s#", hl),
   })
 end
 
@@ -101,12 +101,12 @@ end
 ---@return string
 function M.git_component()
   local head = vim.b.gitsigns_head
-  if not head or head == '' then return '' end
+  if not head or head == "" then return "" end
 
-  local component = string.format(' %s', head)
+  local component = string.format(" %s", head)
 
-  local num_hunks = #(require('gitsigns').get_hunks() or {})
-  if num_hunks > 0 then component = component .. string.format(' (#Hunks: %d)', num_hunks) end
+  local num_hunks = #(require("gitsigns").get_hunks() or {})
+  if num_hunks > 0 then component = component .. string.format(" (#Hunks: %d)", num_hunks) end
 
   return component
 end
@@ -114,9 +114,9 @@ end
 --- The current debugging status (if any).
 ---@return string?
 function M.dap_component()
-  if not package.loaded['dap'] or require('dap').status() == '' then return nil end
+  if not package.loaded["dap"] or require("dap").status() == "" then return nil end
 
-  return string.format('%%#%s#%s  %s', M.get_or_create_hl('Special'), icons.misc.bug, require('dap').status())
+  return string.format("%%#%s#%s  %s", M.get_or_create_hl("Special"), icons.misc.bug, require("dap").status())
 end
 
 ---@type table<string, string?>
@@ -126,10 +126,10 @@ local progress_status = {
   title = nil,
 }
 
-vim.api.nvim_create_autocmd('LspProgress', {
-  group = vim.api.nvim_create_augroup('statusline', { clear = true }),
-  desc = 'Update LSP progress in statusline',
-  pattern = { 'begin', 'end' },
+vim.api.nvim_create_autocmd("LspProgress", {
+  group = vim.api.nvim_create_augroup("statusline", { clear = true }),
+  desc = "Update LSP progress in statusline",
+  pattern = { "begin", "end" },
   callback = function(args)
     -- This should in theory never happen, but I've seen weird errors.
     if not args.data then return end
@@ -140,7 +140,7 @@ vim.api.nvim_create_autocmd('LspProgress', {
       title = args.data.params.value.title,
     }
 
-    if progress_status.kind == 'end' then
+    if progress_status.kind == "end" then
       progress_status.title = nil
       -- Wait a bit before clearing the status.
       vim.defer_fn(function() vim.cmd.redrawstatus() end, 3000)
@@ -152,49 +152,49 @@ vim.api.nvim_create_autocmd('LspProgress', {
 --- The latest LSP progress message.
 ---@return string
 function M.lsp_progress_component()
-  if not progress_status.client or not progress_status.title then return '' end
+  if not progress_status.client or not progress_status.title then return "" end
 
   -- Avoid noisy messages while typing.
-  if vim.startswith(vim.api.nvim_get_mode().mode, 'i') then return '' end
+  if vim.startswith(vim.api.nvim_get_mode().mode, "i") then return "" end
 
   return table.concat({
-    '%#StatuslineSpinner#󱥸 ',
-    string.format('%%#StatuslineTitle#%s  ', progress_status.client),
-    string.format('%%#StatuslineItalic#%s...', progress_status.title),
+    "%#StatuslineSpinner#󱥸 ",
+    string.format("%%#StatuslineTitle#%s  ", progress_status.client),
+    string.format("%%#StatuslineItalic#%s...", progress_status.title),
   })
 end
 
 --- The buffer's filetype.
 ---@return string
 function M.filetype_component()
-  local devicons = require('nvim-web-devicons')
+  local devicons = require("nvim-web-devicons")
 
   -- Special icons for some filetypes.
   local special_icons = {
-    DiffviewFileHistory = { icons.misc.git, 'Number' },
-    DiffviewFiles = { icons.misc.git, 'Number' },
-    ['ccc-ui'] = { icons.misc.palette, 'Comment' },
-    ['dap-view'] = { icons.misc.bug, 'Special' },
-    ['grug-far'] = { icons.misc.search, 'Constant' },
-    codecompanion = { icons.misc.robot, 'Conditional' },
-    fzf = { icons.misc.terminal, 'Special' },
-    gitcommit = { icons.misc.git, 'Number' },
-    gitrebase = { icons.misc.git, 'Number' },
-    lazy = { icons.symbol_kinds.Method, 'Special' },
-    lazyterm = { icons.misc.terminal, 'Special' },
-    minifiles = { icons.symbol_kinds.Folder, 'Directory' },
-    qf = { icons.misc.search, 'Conditional' },
+    DiffviewFileHistory = { icons.misc.git, "Number" },
+    DiffviewFiles = { icons.misc.git, "Number" },
+    ["ccc-ui"] = { icons.misc.palette, "Comment" },
+    ["dap-view"] = { icons.misc.bug, "Special" },
+    ["grug-far"] = { icons.misc.search, "Constant" },
+    codecompanion = { icons.misc.robot, "Conditional" },
+    fzf = { icons.misc.terminal, "Special" },
+    gitcommit = { icons.misc.git, "Number" },
+    gitrebase = { icons.misc.git, "Number" },
+    lazy = { icons.symbol_kinds.Method, "Special" },
+    lazyterm = { icons.misc.terminal, "Special" },
+    minifiles = { icons.symbol_kinds.Folder, "Directory" },
+    qf = { icons.misc.search, "Conditional" },
   }
 
   local filetype = vim.bo.filetype
-  if filetype == '' then filetype = '[No Name]' end
+  if filetype == "" then filetype = "[No Name]" end
 
   local icon, icon_hl
   if special_icons[filetype] then
     icon, icon_hl = unpack(special_icons[filetype])
   else
     local buf_name = vim.api.nvim_buf_get_name(0)
-    local name, ext = vim.fn.fnamemodify(buf_name, ':t'), vim.fn.fnamemodify(buf_name, ':e')
+    local name, ext = vim.fn.fnamemodify(buf_name, ":t"), vim.fn.fnamemodify(buf_name, ":e")
 
     icon, icon_hl = devicons.get_icon(name, ext)
     if not icon then
@@ -203,27 +203,27 @@ function M.filetype_component()
   end
   icon_hl = M.get_or_create_hl(icon_hl)
 
-  return string.format('%%#%s#%s %%#StatuslineTitle#%s', icon_hl, icon, filetype)
+  return string.format("%%#%s#%s %%#StatuslineTitle#%s", icon_hl, icon, filetype)
 end
 
 --- File-content encoding for the current buffer.
 ---@return string
 function M.encoding_component()
   local encoding = vim.opt.fileencoding:get()
-  return encoding ~= '' and string.format('%%#StatuslineModeSeparatorOther# %s', encoding) or ''
+  return encoding ~= "" and string.format("%%#StatuslineModeSeparatorOther# %s", encoding) or ""
 end
 
 --- The current line, total line count, and column position.
 ---@return string
 function M.position_component()
-  local line = vim.fn.line('.')
+  local line = vim.fn.line(".")
   local line_count = vim.api.nvim_buf_line_count(0)
-  local col = vim.fn.virtcol('.')
+  local col = vim.fn.virtcol(".")
 
   return table.concat({
-    '%#StatuslineItalic#l: ',
-    string.format('%%#StatuslineTitle#%d', line),
-    string.format('%%#StatuslineItalic#/%d c: %d', line_count, col),
+    "%#StatuslineItalic#l: ",
+    string.format("%%#StatuslineTitle#%d", line),
+    string.format("%%#StatuslineItalic#/%d c: %d", line_count, col),
   })
 end
 
@@ -235,7 +235,7 @@ function M.render()
   local function concat_components(components)
     return vim.iter(components):skip(1):fold(
       components[1],
-      function(acc, component) return #component > 0 and string.format('%s    %s', acc, component) or acc end
+      function(acc, component) return #component > 0 and string.format("%s    %s", acc, component) or acc end
     )
   end
 
@@ -245,14 +245,14 @@ function M.render()
       M.git_component(),
       M.dap_component() or M.lsp_progress_component(),
     }),
-    '%#StatusLine#%=',
+    "%#StatusLine#%=",
     concat_components({
       vim.diagnostic.status(),
       M.filetype_component(),
       M.encoding_component(),
       M.position_component(),
     }),
-    ' ',
+    " ",
   })
 end
 vim.o.statusline = "%!v:lua.require'core.statusline'.render()"

@@ -1,20 +1,20 @@
 -- Install Lazy.
-local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.uv.fs_stat(lazypath) then
   vim.fn.system({
-    'git',
-    'clone',
-    '--filter=blob:none',
-    'https://github.com/folke/lazy.nvim.git',
-    '--branch=stable',
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable",
     lazypath,
   })
 end
 vim.opt.rtp:prepend(lazypath)
 
 -- Configure plugins.
-require('lazy').setup('plugins', {
-  ui = { border = 'rounded' },
+require("lazy").setup("plugins", {
+  ui = { border = "rounded" },
   install = {
     missing = true,
   },
@@ -37,22 +37,22 @@ require('lazy').setup('plugins', {
     rtp = {
       -- Stuff I don't use.
       disabled_plugins = {
-        'gzip',
-        'rplugin',
-        'logiPat',
-        'matchit',
-        'matchparen',
-        'netrwFileHandlers',
-        'netrwPlugin',
-        'netrwSettings',
-        'rrhelper',
-        'tar',
-        'tarPlugin',
-        'tohtml',
-        'tutor',
-        'vimball',
-        'zip',
-        'zipPlugin',
+        "gzip",
+        "rplugin",
+        "logiPat",
+        "matchit",
+        "matchparen",
+        "netrwFileHandlers",
+        "netrwPlugin",
+        "netrwSettings",
+        "rrhelper",
+        "tar",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "vimball",
+        "zip",
+        "zipPlugin",
       },
     },
   },

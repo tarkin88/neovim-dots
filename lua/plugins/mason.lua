@@ -1,51 +1,51 @@
 return {
-  'williamboman/mason.nvim',
-  cmd = 'ConformInfo',
-  event = { 'BufReadPre', 'BufNewFile' },
+  "williamboman/mason.nvim",
+  cmd = "ConformInfo",
+  event = { "BufReadPre", "BufNewFile" },
   config = function()
-    require('mason').setup({})
+    require("mason").setup({})
 
     local ensure_installed = {
-      'tree-sitter-cli',
+      "tree-sitter-cli",
       -- LSP servers
-      'basedpyright',
-      'bash-language-server',
-      'css-lsp',
-      'docker-language-server',
-      'json-lsp',
-      'lua-language-server',
-      'markdown-oxide',
-      'ruff',
-      'sqlls',
-      'taplo',
-      'yaml-language-server',
+      "basedpyright",
+      "bash-language-server",
+      "css-lsp",
+      "docker-language-server",
+      "json-lsp",
+      "lua-language-server",
+      "markdown-oxide",
+      "ruff",
+      "sqlls",
+      "taplo",
+      "yaml-language-server",
       -- Formatters
-      'black',
-      'codespell',
-      'prettier',
-      'shfmt',
-      'sqlfluff',
-      'stylua',
+      "black",
+      "codespell",
+      "prettier",
+      "shfmt",
+      "sqlfluff",
+      "stylua",
       -- Linters
-      'shellcheck',
+      "shellcheck",
     }
 
     local function auto_install_missing_tools()
-      local mr = require('mason-registry')
+      local mr = require("mason-registry")
 
       mr.refresh(function()
         local to_install = {}
 
-        local show = vim.schedule_wrap(function(msg) vim.notify(msg, vim.log.levels.INFO, { title = 'Mason' }) end)
+        local show = vim.schedule_wrap(function(msg) vim.notify(msg, vim.log.levels.INFO, { title = "Mason" }) end)
         local show_error = vim.schedule_wrap(
-          function(msg) vim.notify(msg, vim.log.levels.ERROR, { title = 'Mason' }) end
+          function(msg) vim.notify(msg, vim.log.levels.ERROR, { title = "Mason" }) end
         )
 
         local function do_install(p)
-          p:once('install:success', function() show(string.format('%s: successfully installed', p.name)) end)
-          p:once('install:failed', function() show_error(string.format('%s: failed to install', p.name)) end)
+          p:once("install:success", function() show(string.format("%s: successfully installed", p.name)) end)
+          p:once("install:failed", function() show_error(string.format("%s: failed to install", p.name)) end)
           if not p:is_installing() then
-            show(string.format('Installing %s', p.name))
+            show(string.format("Installing %s", p.name))
             p:install()
           end
         end

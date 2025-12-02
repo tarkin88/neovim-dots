@@ -5,9 +5,7 @@ local total_start = vim.uv.hrtime()
 
 ---Start measuring a section
 ---@param name string
-function profiler.start(name)
-  sections[name] = vim.uv.hrtime()
-end
+function profiler.start(name) sections[name] = vim.uv.hrtime() end
 
 ---End measuring a section
 ---@param name string
@@ -31,20 +29,19 @@ function profiler.report()
 
   table.sort(results, function(a, b) return a.duration > b.duration end)
 
-  local sep = '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━'
-  local lines = { sep, '󰄧 init.lua TIMER', sep }
+  local sep =
+    "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+  local lines = { sep, "󰄧 init.lua TIMER", sep }
 
   for _, r in ipairs(results) do
-    table.insert(lines, string.format('  %.2f ms - %s', r.duration, r.name))
+    table.insert(lines, string.format("  %.2f ms - %s", r.duration, r.name))
   end
 
   table.insert(lines, sep)
-  table.insert(lines, string.format('  Total : %.2f ms', total_duration))
+  table.insert(lines, string.format("  Total : %.2f ms", total_duration))
   table.insert(lines, sep)
 
-  vim.schedule(function()
-    vim.notify(table.concat(lines, '\n'), vim.log.levels.INFO, { title = 'Startup Profile' })
-  end)
+  vim.schedule(function() vim.notify(table.concat(lines, "\n"), vim.log.levels.INFO, { title = "Startup Profile" }) end)
 end
 
 return profiler

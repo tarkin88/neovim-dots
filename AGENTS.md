@@ -32,7 +32,7 @@
 
 - **Indentation**: 2 spaces, no tabs
 - **Line length**: 120 characters max
-- **Quotes**: Single quotes preferred (auto-prefer via stylua)
+- **Quotes**: Double quotes preferred (auto-prefer via stylua)
 - **Function calls**: Always use parentheses (stylua: `call_parentheses = "Always"`)
 - **Naming**: snake_case for variables/functions, PascalCase for classes/types
 
