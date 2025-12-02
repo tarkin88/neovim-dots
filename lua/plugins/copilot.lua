@@ -5,7 +5,7 @@ return {
   build = ":Copilot auth",
   config = function()
     require("copilot").setup({
-      suggestion = { enabled = false },
+      suggestion = { enabled = true },
       panel = { enabled = false },
       filetypes = {
         lua = true,
