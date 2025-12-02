@@ -51,7 +51,7 @@ o.scrolloff = 15 -- minimum number of lines to keep above and below the cursor.
 
 -- editing
 o.updatetime = 200 -- length of time to wait before triggering the plugin
-o.timeoutlen = 250 -- shorten key timeout length for which-key
+o.timeoutlen = 300 -- shorten key timeout length for which-key
 o.inccommand = "split" -- preview substitutions live
 
 -- check spell

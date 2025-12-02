@@ -20,9 +20,9 @@ profiler.stop("autocmds")
 -- require("core.statusline")
 -- profiler.stop("statusline")
 
-profiler.start("winbar")
-require("core.winbar")
-profiler.stop("winbar")
+-- profiler.start("winbar")
+-- require("core.winbar")
+-- profiler.stop("winbar")
 
 profiler.start("commands")
 require("core.commands")
