@@ -1,5 +1,5 @@
 return {
-  "esensar/nvim-dev-container",
+  "https://codeberg.org/esensar/nvim-dev-container",
   events = { "DevcontainerStart", "DevcontainerLogs" },
   dependencies = "nvim-treesitter/nvim-treesitter",
   opts = {
@@ -35,7 +35,17 @@ return {
           vim.api.nvim_del_augroup_by_id(au_id)
         end,
       })
-      vim.fn.termopen(command)
+      local job_id = vim.fn.jobstart(command, {
+        pty = true,
+        cwd = vim.fn.getcwd(),
+      })
+      if job_id > 0 then
+        local channel_id = vim.fn.job_getchannel(job_id)
+        vim.api.nvim_open_term(bufnr, {
+          on_input = function(_, _, _, _) end,
+        })
+        vim.api.nvim_chan_send(channel_id, "")
+      end
     end,
   },
   keys = {
