@@ -2,7 +2,6 @@ return {
   "folke/sidekick.nvim",
   event = "InsertEnter",
   opts = {
-    -- add any options here
     cli = {
       mux = {
         backend = "zellij",
@@ -36,8 +35,6 @@ return {
     {
       "<leader>as",
       function() require("sidekick.cli").select() end,
-      -- Or to select only installed tools:
-      -- require("sidekick.cli").select({ filter = { installed = true } })
       desc = "Select CLI",
     },
     {
@@ -67,12 +64,6 @@ return {
       function() require("sidekick.cli").prompt() end,
       mode = { "n", "x" },
       desc = "Sidekick Select Prompt",
-    },
-    -- Example of a keybinding to open Claude directly
-    {
-      "<leader>ac",
-      function() require("sidekick.cli").toggle({ name = "claude", focus = true }) end,
-      desc = "Sidekick Toggle Claude",
     },
   },
 }
