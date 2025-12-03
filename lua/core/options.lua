@@ -35,7 +35,7 @@ o.listchars = "extends:…,nbsp:␣,precedes:…,tab:> ,trail:·"
 o.fillchars = "eob: ,fold:┄,foldclose:,foldopen:"
 
 -- statusline
-o.laststatus = 3 -- never a statusline
+o.laststatus = 3 -- statusline
 o.cmdheight = 1
 
 -- o.ruler = false -- no position info at cmdline
