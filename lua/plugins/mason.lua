@@ -20,7 +20,6 @@ return {
       "taplo",
       "yaml-language-server",
       -- Formatters
-      "black",
       "codespell",
       "prettier",
       "shfmt",

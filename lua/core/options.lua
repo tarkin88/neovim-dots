@@ -87,7 +87,7 @@ g.loaded_ruby_provider = 0
 -- -- ╭──────────────────────────────────────────────────────────╮
 -- -- │ ⬇️ Experimental, Neovim 0.12                             │
 -- -- ╰──────────────────────────────────────────────────────────╯
---
+require("vim._extui").enable({})
 -- vim.schedule(function()
 --   require('vim._extui').enable({
 --     enable = true,

@@ -8,16 +8,16 @@ return {
       suggestion = { enabled = true },
       panel = { enabled = false },
       filetypes = {
-        lua = true,
-        python = true,
-        zsh = true,
-        toml = true,
-        yaml = true,
-        markdown = true,
-        help = true,
         gitcommit = true,
         gitrebase = true,
+        help = true,
+        lua = true,
+        markdown = true,
+        python = true,
         sh = true,
+        toml = true,
+        yaml = true,
+        zsh = true,
         ["*"] = false, -- disable for all other filetypes and ignore default `filetypes`
       },
     })

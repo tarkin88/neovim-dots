@@ -36,12 +36,19 @@ local diagnostic_opts = {
 vim.diagnostic.config(diagnostic_opts)
 
 capabilities = vim.tbl_deep_extend("force", capabilities, {
+  workspace = {
+    fileOperations = {
+      didRename = true,
+      willRename = true,
+    },
+  },
   textDocument = {
     foldingRange = {
       dynamicRegistration = false,
       lineFoldingOnly = true,
     },
   },
+  keys = {},
 })
 vim.lsp.config("*", {
   capabilities = capabilities,
@@ -59,3 +66,7 @@ local servers = {
 }
 
 vim.lsp.enable(servers)
+local on_attach = function(client, bufnr)
+  if client.server_capabilities.inlayHintProvider then vim.lsp.inlay_hint.enable(true, { bufnr = bufnr }) end
+  -- other on_attach configs
+end

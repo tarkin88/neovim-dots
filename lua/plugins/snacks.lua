@@ -8,13 +8,17 @@ return {
     explorer = { enabled = true },
     indent = { enabled = true },
     input = { enabled = true },
-    -- picker = { enabled = true },
     notifier = { enabled = true },
     quickfile = { enabled = true },
     scope = { enabled = true },
     scroll = { enabled = true },
     picker = {
       enabled = true,
+      actions = {
+        sidekick_send = function(...)
+          return require("sidekick.cli.picker.snacks").send(...)
+        end,
+      },
       sources = {
         explorer = {
           auto_close = true,
@@ -37,19 +41,23 @@ return {
             ["<C-u>"] = { "preview_scroll_up", mode = { "i", "n" } },
             ["<C-d>"] = { "preview_scroll_down", mode = { "i", "n" } },
             ["<C-p>"] = { "toggle_preview", mode = { "i", "n" } },
+            ["<a-a>"] = {
+              "sidekick_send",
+              mode = { "n", "i" },
+            },
           },
         },
       },
     },
     statuscolumn = {
-      enabled = true,
+      enabled = false,
       terminal = { enabled = true },
       folds = {
         open = true, -- show open fold icons
       },
     },
     words = { enabled = true },
-    scratch = { enabled = true },
+    scratch = { enabled = false },
     styles = {
       notification = {
         wrap = true,

@@ -13,10 +13,16 @@ return {
   end,
   config = function()
     require("conform").setup({
-      format_on_save = {
-        timeout_ms = 500,
-        lsp_format = "fallback",
+      default_format_opts = {
+        timeout_ms = 3000,
+        async = false, -- not recommended to change
+        quiet = false, -- not recommended to change
+        lsp_format = "fallback", -- not recommended to change
       },
+      -- format_on_save = {
+      --   timeout_ms = 2500,
+      --   lsp_format = "fallback",
+      -- },
       formatters_by_ft = {
         lua = { "stylua" },
         python = { "ruff" },
@@ -29,10 +35,13 @@ return {
         sh = { "shfmt" },
         bash = { "shfmt" },
         toml = { "taplo" },
+        sql = { "sqlfluff" },
         ["*"] = { "codespell" },
         ["_"] = { "trim_whitespace" },
       },
       formatters = {
+        injected = { options = { ignore_errors = true } },
+
         shfmt = { append_args = { "-i", "2" } },
       },
     })

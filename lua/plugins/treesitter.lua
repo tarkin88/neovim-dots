@@ -1,21 +1,10 @@
 return {
   "nvim-treesitter/nvim-treesitter",
+  branch = "main",
+  version = false,
   event = { "BufReadPost", "BufNewFile" },
-  cmd = {
-    "TSBufDisable",
-    "TSBufEnable",
-    "TSBufToggle",
-    "TSDisable",
-    "TSEnable",
-    "TSToggle",
-    "TSInstall",
-    "TSInstallInfo",
-    "TSInstallSync",
-    "TSModuleInfo",
-    "TSUninstall",
-    "TSUpdate",
-    "TSUpdateSync",
-  },
+  cmd = { "TSUpdate", "TSInstall", "TSLog", "TSUninstall" },
+
   dependencies = {
     {
       "nvim-treesitter/nvim-treesitter-context",
@@ -28,47 +17,55 @@ return {
         min_window_height = 20,
       },
     },
+     "folke/ts-comments.nvim",
     "andymass/vim-matchup",
   },
   build = ":TSUpdate",
-  config = function()
-    local treesitter = require("nvim-treesitter.configs")
-
-    treesitter.setup({
-      ensure_installed = {
-        "bash",
-        "diff",
-        "dockerfile",
-        "fish",
-        "gitcommit",
-        "gitcommit",
-        "graphql",
-        "javascript",
-        "json",
-        "json5",
-        "jsonc",
-        "lua",
-        "markdown",
-        "markdown_inline",
-        "python",
-        "query",
-        "rasi",
-        "regex",
-        "toml",
-        "tsx",
-        "typescript",
-        "yaml",
-      },
-      ignore_install = {},
-      highlight = {
-        enable = true,
-        disable = { "markdown" },
-      },
-      indent = { enable = true, disable = { "yaml" } },
-      fold = { enable = true },
+  opts_extend = { "ensure_installed" },
+  opts = {
+    indent = { enable = true }, ---@type lazyvim.TSFeat
+    highlight = { enable = true }, ---@type lazyvim.TSFeat
+    folds = { enable = true }, ---@type lazyvim.TSFeat
+    ensure_installed = {
+      "bash",
+      "diff",
+      "json",
+      "dockerfile",
+      "fish",
+      "gitcommit",
+      "gitcommit",
+      "jsonc",
+      "lua",
+      "luadoc",
+      "luap",
+      "markdown",
+      "markdown_inline",
+      "python",
+      "query",
+      "regex",
+      "toml",
+      "yaml",
+      "tsx",
+      "typescript",
+    },
+  },
+  config = function(_, opts)
+    local TS = require("nvim-treesitter")
+    setmetatable(require("nvim-treesitter.install"), {
+      __newindex = function(_, k)
+        if k == "compilers" then
+          vim.schedule(
+            function()
+              LazyVim.error({
+                "Setting custom compilers for `nvim-treesitter` is no longer supported.",
+                "",
+                "For more info, see:",
+                "- [compilers](https://docs.rs/cc/latest/cc/#compile-time-requirements)",
+              })
+            end
+          )
+        end
+      end,
     })
-
-    vim.o.foldmethod = "expr"
-    vim.o.foldexpr = "nvim_treesitter#foldexpr()"
   end,
 }
