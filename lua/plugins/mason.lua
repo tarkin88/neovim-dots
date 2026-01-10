@@ -1,67 +1,47 @@
-return {
-  "williamboman/mason.nvim",
-  cmd = "ConformInfo",
-  event = { "BufReadPre", "BufNewFile" },
-  config = function()
-    require("mason").setup({})
+local lze = require("lze")
 
-    local ensure_installed = {
-      "tree-sitter-cli",
-      -- LSP servers
+lze.load({
+    "mason.nvim",
+    cmd = { "Mason", "MasonInstall", "MasonUpdate" }, 
+    event = { "BufReadPre", "BufNewFile" },
+    after = function()
+      require("mason").setup({
+        ui = {
+          border = "rounded",
+        },
+        max_concurrent_installers = 5,
+      })
+
+       local ensure_installed = {
       "basedpyright",
       "bash-language-server",
+      "codespell",
       "css-lsp",
       "docker-language-server",
       "json-lsp",
       "lua-language-server",
       "markdown-oxide",
-      "ruff",
-      "sqlls",
-      "taplo",
-      "yaml-language-server",
-      -- Formatters
-      "codespell",
       "prettier",
+      "ruff",
+      "shellcheck",
       "shfmt",
       "sqlfluff",
+      "sqlls",
       "stylua",
-      -- Linters
-      "shellcheck",
+      "taplo",
+      "tree-sitter-cli",
+      "yaml-language-server",
     }
 
-    local function auto_install_missing_tools()
       local mr = require("mason-registry")
-
-      mr.refresh(function()
-        local to_install = {}
-
-        local show = vim.schedule_wrap(function(msg) vim.notify(msg, vim.log.levels.INFO, { title = "Mason" }) end)
-        local show_error = vim.schedule_wrap(
-          function(msg) vim.notify(msg, vim.log.levels.ERROR, { title = "Mason" }) end
-        )
-
-        local function do_install(p)
-          p:once("install:success", function() show(string.format("%s: successfully installed", p.name)) end)
-          p:once("install:failed", function() show_error(string.format("%s: failed to install", p.name)) end)
-          if not p:is_installing() then
-            show(string.format("Installing %s", p.name))
-            p:install()
-          end
+      for _, tool in ipairs(ensure_installed) do
+        local p = mr.get_package(tool)
+        if not p:is_installed() then
+          p:install()
         end
+      end
 
-        for _, name in ipairs(ensure_installed) do
-          if not mr.is_installed(name) then table.insert(to_install, name) end
-        end
+    end,
+  }
+)
 
-        if #to_install > 0 then
-          for _, name in ipairs(to_install) do
-            local p = mr.get_package(name)
-            do_install(p)
-          end
-        end
-      end)
-    end
-
-    vim.defer_fn(function() auto_install_missing_tools() end, 0)
-  end,
-}

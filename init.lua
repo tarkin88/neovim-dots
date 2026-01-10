@@ -1,6 +1,7 @@
-require("core.options")
-require("core.mappings")
-require("core.autocmds")
-require("core.commands")
-require("core.lazy")
-require("core.lsp")
+require("options")
+require("mappings")
+require("autocmds")
+require("lsp")
+require("plugins")
+
+vim.cmd.colorscheme('retrobox')
