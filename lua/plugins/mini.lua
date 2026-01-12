@@ -7,7 +7,7 @@ lze.load({
     after = function() require("mini.move").setup() end,
   },
   {
-    "mini.git",
+    "mini.diff",
     event = { "BufReadPost" },
     after = function() require("mini.diff").setup() end,
   },
@@ -15,6 +15,24 @@ lze.load({
     "mini.pairs",
     event = { "BufReadPost" },
     after = function() require("mini.pairs").setup() end,
+  },
+  {
+    "mini.hipatterns",
+    event = { "BufReadPost" },
+    after = function()
+      local mini_hipatterns = require("mini.hipatterns")
+
+      mini_hipatterns.setup({
+        highlighters = {
+          fixme = { pattern = "%f[%w]()FIXME()%f[%W]", group = "MiniHipatternsFixme" },
+          hack = { pattern = "%f[%w]()HACK()%f[%W]", group = "MiniHipatternsHack" },
+          todo = { pattern = "%f[%w]()TODO()%f[%W]", group = "MiniHipatternsTodo" },
+          note = { pattern = "%f[%w]()NOTE()%f[%W]", group = "MiniHipatternsNote" },
+
+          hex_color = mini_hipatterns.gen_highlighter.hex_color(),
+        },
+      })
+    end,
   },
   {
     "mini.clue",
