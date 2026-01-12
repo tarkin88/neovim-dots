@@ -4,7 +4,7 @@
 local arrows = require("icons").arrows
 
 vim.g.mapleader = " " -- Set the leader key prefix
-vim.opt.clipboard:append("unnamedplus") -- Use the system clipboard for all operations
+-- vim.opt.clipboard:append("unnamedplus") -- Use the system clipboard for all operations
 vim.opt.shortmess:append({
   w = true, -- Shorten the message for the "written" file status
   s = true, -- Shorten "[Search]" messages.

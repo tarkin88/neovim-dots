@@ -26,7 +26,6 @@ Diff:
   local raw = vim.fn.systemlist(cmd)
   if vim.v.shell_error ~= 0 or not raw or #raw == 0 then return nil, "Error calling copilot-cli" end
 
-  -- filtrar ruido obvio, incluidas métricas de uso
   local lines = {}
   for _, line in ipairs(raw) do
     local trimmed = line:gsub("^%s+", "")
@@ -61,39 +60,22 @@ function M.gen_commit_for_buf(bufnr)
     return
   end
 
-  -- si hay body, insertar línea en blanco entre título y body
   if #lines > 1 then
     local with_blank = {}
     with_blank[1] = lines[1]
-    with_blank[2] = "" -- línea en blanco
+    with_blank[2] = ""
     for i = 2, #lines do
       with_blank[#with_blank + 1] = lines[i]
     end
     lines = with_blank
   end
 
-  -- inserta título + (blank) + body al inicio, sin borrar comentarios de git
+  vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, {})
+
   vim.api.nvim_buf_set_lines(bufnr, 0, 0, false, lines)
   vim.api.nvim_buf_set_lines(bufnr, #lines, #lines, false, { "" })
 
-  -- cursor al final del título
   vim.api.nvim_win_set_cursor(0, { 1, #lines[1] })
 end
-
--- function M.gen_commit_for_buf(bufnr)
---   bufnr = bufnr or vim.api.nvim_get_current_buf()
---
---   local lines, err = get_ai_commit_message()
---   if not lines then
---     vim.notify("AI commit: " .. err, vim.log.levels.WARN)
---     return
---   end
---   print(lines)
---
---   vim.api.nvim_buf_set_lines(bufnr, 0, 0, false, lines)
---   vim.api.nvim_buf_set_lines(bufnr, #lines, #lines, false, { "" })
---
---   vim.api.nvim_win_set_cursor(0, { 1, #lines[1] })
--- end
 
 return M
