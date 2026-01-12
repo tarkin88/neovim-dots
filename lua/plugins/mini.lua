@@ -17,6 +17,15 @@ lze.load({
     after = function() require("mini.pairs").setup() end,
   },
   {
+    "mini.indentscope",
+    event = { "BufReadPost" },
+    after = function()
+      require("mini.indentscope").setup({
+        symbol = "▎",
+      })
+    end,
+  },
+  {
     "mini.hipatterns",
     event = { "BufReadPost" },
     after = function()

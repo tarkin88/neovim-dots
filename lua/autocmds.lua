@@ -125,3 +125,19 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     vim.wo[0].foldmethod = "manual"
   end,
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "gitcommit",
+  callback = function(ev)
+    -- commando local al buffer
+    vim.api.nvim_buf_create_user_command(
+      ev.buf,
+      "GenCommit",
+      function() require("commands").gen_commit_for_buf(ev.buf) end,
+      { desc = "Generate commit message with Copilot CLI" }
+    )
+
+    -- opcional: generarlo automático al abrir el buffer
+    -- vim.schedule(function() require("commands").gen_commit_for_buf(ev.buf) end)
+  end,
+})
