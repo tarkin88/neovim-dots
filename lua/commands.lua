@@ -13,21 +13,43 @@ Requirements:
 - Write BOTH:
   1) A single-line title (subject) as the first line, max 72 characters.
   2) A body (one or more lines) explaining the change, max 100 characters per line.
-- Output ONLY the commit message, no extra explanations.
+- Output ONLY the commit message itself, with no explanations, no markdown, no code blocks.
+- Do NOT repeat the prompt or the diff.
 
 Given the following git diff, write the commit message:
 
 Diff:
 ]] .. diff
 
-  -- usa copilot CLI instalado por brew
   local cmd = { "copilot", "-p", prompt, "--model", "gpt-5-mini" }
 
-  -- prompt solo una vez, por stdin
-  local output = vim.fn.systemlist(cmd)
-  if vim.v.shell_error ~= 0 or not output or #output == 0 then return nil, "Error calling copilot-cli" end
+  local raw = vim.fn.systemlist(cmd)
+  if vim.v.shell_error ~= 0 or not raw or #raw == 0 then return nil, "Error calling copilot-cli" end
 
-  return output, nil
+  -- filtrar ruido obvio, incluidas métricas de uso
+  local lines = {}
+  for _, line in ipairs(raw) do
+    local trimmed = line:gsub("^%s+", "")
+
+    local is_meta = trimmed == ""
+      or trimmed:match("^You are ")
+      or trimmed:match("^Requirements:")
+      or trimmed:match("^Given the following")
+      or trimmed:match("^Diff:")
+      or trimmed:match("^```")
+      or trimmed:match("^Total usage est:")
+      or trimmed:match("^Total duration %(API%)")
+      or trimmed:match("^Total duration %(wall%)")
+      or trimmed:match("^Total code changes:")
+      or trimmed:match("^Usage by model:")
+      or trimmed:match("^gpt%-5%-mini")
+
+    if not is_meta then table.insert(lines, line) end
+  end
+
+  if #lines == 0 then return nil, "Copilot CLI returned only meta/prompt" end
+
+  return lines, nil
 end
 
 function M.gen_commit_for_buf(bufnr)
@@ -39,12 +61,39 @@ function M.gen_commit_for_buf(bufnr)
     return
   end
 
-  -- inserta título + body al inicio, sin borrar comentarios de git
+  -- si hay body, insertar línea en blanco entre título y body
+  if #lines > 1 then
+    local with_blank = {}
+    with_blank[1] = lines[1]
+    with_blank[2] = "" -- línea en blanco
+    for i = 2, #lines do
+      with_blank[#with_blank + 1] = lines[i]
+    end
+    lines = with_blank
+  end
+
+  -- inserta título + (blank) + body al inicio, sin borrar comentarios de git
   vim.api.nvim_buf_set_lines(bufnr, 0, 0, false, lines)
   vim.api.nvim_buf_set_lines(bufnr, #lines, #lines, false, { "" })
 
   -- cursor al final del título
   vim.api.nvim_win_set_cursor(0, { 1, #lines[1] })
 end
+
+-- function M.gen_commit_for_buf(bufnr)
+--   bufnr = bufnr or vim.api.nvim_get_current_buf()
+--
+--   local lines, err = get_ai_commit_message()
+--   if not lines then
+--     vim.notify("AI commit: " .. err, vim.log.levels.WARN)
+--     return
+--   end
+--   print(lines)
+--
+--   vim.api.nvim_buf_set_lines(bufnr, 0, 0, false, lines)
+--   vim.api.nvim_buf_set_lines(bufnr, #lines, #lines, false, { "" })
+--
+--   vim.api.nvim_win_set_cursor(0, { 1, #lines[1] })
+-- end
 
 return M
