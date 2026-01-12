@@ -32,11 +32,6 @@ lze.load({
       grep = {
         rg_opts = "--hidden --glob '!.git' --column --line-number --no-heading --color=always --smart-case",
       },
-      lsp = {
-        symbols = {
-          symbol_style = 1,
-        },
-      },
     })
   end,
 })
