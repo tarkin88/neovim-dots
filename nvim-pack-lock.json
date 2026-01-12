@@ -4,6 +4,10 @@
       "rev": "f35b7747d4d536fba96aa098a4144e5c85252828",
       "src": "https://github.com/b0o/SchemaStore.nvim"
     },
+    "artio.nvim": {
+      "rev": "cb862c152de92c70144043efce67f023f5f958ed",
+      "src": "https://github.com/comfysage/artio.nvim"
+    },
     "blink-copilot": {
       "rev": "7ad8209b2f880a2840c94cdcd80ab4dc511d4f39",
       "src": "https://github.com/fang2hou/blink-copilot"
@@ -14,7 +18,7 @@
       "version": "'v1.8.0'"
     },
     "conform.nvim": {
-      "rev": "8314f4c9e205e7f30b62147069729f9a1227d8bf",
+      "rev": "238f542a118984a88124fc915d5b981680418707",
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "copilot.vim": {
@@ -25,8 +29,12 @@
       "rev": "572f5660cf05f8cd8834e096d7b4c921ba18e175",
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
+    "fzf-lua": {
+      "rev": "e7773d0c863a31bfc8ab72dd1adbec4611a35409",
+      "src": "https://github.com/ibhagwan/fzf-lua"
+    },
     "lze": {
-      "rev": "e48d0d4fcf904e64aee60c7acf6df47ae1275dfe",
+      "rev": "ab1c3202c62fc19a33ede14a8b6fc66e772b91d7",
       "src": "https://github.com/BirdeeHub/lze"
     },
     "mason.nvim": {
@@ -34,7 +42,7 @@
       "src": "https://github.com/mason-org/mason.nvim"
     },
     "nvim-treesitter": {
-      "rev": "2ba5ec184609a96b513bf4c53a20512d64e27f39",
+      "rev": "5a7e5638e7d220575b1c22c8a2e099b52231886e",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-treesitter-context": {

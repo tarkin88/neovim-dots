@@ -10,6 +10,7 @@ vim.pack.add({
   "https://github.com/nvim-treesitter/nvim-treesitter-context",
   "https://github.com/folke/ts-comments.nvim",
   "https://github.com/andymass/vim-matchup",
+  "https://github.com/ibhagwan/fzf-lua",
   { src = "https://github.com/Saghen/blink.cmp", version = "v1.8.0" },
 }, {
   load = function(p) vim.cmd("packadd " .. p.spec.name) end,
@@ -23,3 +24,4 @@ require("plugins.conform")
 require("plugins.copilot")
 require("plugins.blink")
 require("plugins.treesitter")
+require("plugins.fzf")
