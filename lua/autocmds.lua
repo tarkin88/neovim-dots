@@ -137,7 +137,9 @@ vim.api.nvim_create_autocmd("FileType", {
       { desc = "Generate commit message with Copilot CLI" }
     )
 
-    -- opcional: generarlo automático al abrir el buffer
-    -- vim.schedule(function() require("commands").gen_commit_for_buf(ev.buf) end)
+    vim.schedule(function()
+      local answer = vim.fn.confirm("Auto-generate git message with Copilot?", "&Yes\n&No", 1)
+      if answer == 1 then require("commands").gen_commit_for_buf(ev.buf) end
+    end)
   end,
 })
