@@ -129,7 +129,6 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "gitcommit",
   callback = function(ev)
-    -- commando local al buffer
     vim.api.nvim_buf_create_user_command(
       ev.buf,
       "GenCommit",
