@@ -4,11 +4,13 @@ lze.load({
   "fzf-lua",
   keys = {
     { "<leader><leader>", "<cmd>FzfLua combine pickers=oldfiles;git_files<CR>", desc = "Smart" },
+    { "<C-p>", "<cmd>FzfLua global<CR>", desc = "Files" },
     { "<leader>ff", "<cmd>FzfLua files<CR>", desc = "Files" },
     { "<leader>fo", "<cmd>FzfLua oldfiles<CR>", desc = "Recent Files" },
     { "<leader>fg", "<cmd>FzfLua live_grep<CR>", desc = "Live Grep" },
     { "<leader>fb", "<cmd>FzfLua buffers<CR>", desc = "Buffers" },
     { "<leader>fh", "<cmd>FzfLua help_tags<CR>", desc = "Help Tags" },
+    { "<leader>ld", "<cmd>FzfLua diagnostics_document<CR>", desc = "diagnostics" },
   },
   after = function()
     require("fzf-lua").setup({

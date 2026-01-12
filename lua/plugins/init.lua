@@ -11,6 +11,7 @@ vim.pack.add({
   "https://github.com/folke/ts-comments.nvim",
   "https://github.com/andymass/vim-matchup",
   "https://github.com/ibhagwan/fzf-lua",
+  "https://github.com/nvim-mini/mini.icons",
   { src = "https://github.com/Saghen/blink.cmp", version = "v1.8.0" },
 }, {
   load = function(p) vim.cmd("packadd " .. p.spec.name) end,
