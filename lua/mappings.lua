@@ -7,3 +7,5 @@ map("n", "<Esc>", "<Cmd> nohlsearch <CR>", { desc = "Hide search highlight" })
 map("n", "<Leader>tr", "<Cmd> set relativenumber! <CR>", { desc = "Toggle relative line numbers" })
 
 map("n", "<leader>uu", "<cmd> lua vim.pack.update() <cr>", { desc = "update" })
+
+map("v", "<C-c>", '"+y', { desc = "Copy yank to clipboard", noremap = true })

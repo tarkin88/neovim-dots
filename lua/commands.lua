@@ -12,7 +12,7 @@ Requirements:
 - Always use scoped commits for context-specific changes (e.g., feat(auth): add login endpoint).
 - Write BOTH:
   1) A single-line title (subject) as the first line, max 72 characters.
-  2) A body (one or more lines) explaining the change, max 100 characters per line.
+  2) A body (one or more lines) explaining the change, be concise, max 70 characters per line.
 - Output ONLY the commit message itself, with no explanations, no markdown, no code blocks.
 - Do NOT repeat the prompt or the diff.
 
