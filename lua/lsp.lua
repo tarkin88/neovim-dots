@@ -66,6 +66,13 @@ local servers = {
 }
 
 vim.lsp.enable(servers)
+
+local map = vim.keymap.set
+
+map("n", "grf", vim.lsp.buf.format, { desc = "Format buffer" })
+map("n", "gd", vim.lsp.buf.definition, { desc = "Definitions" })
+map("n", "gD", vim.lsp.buf.declaration, { desc = "Declarations" })
+
 local on_attach = function(client, bufnr)
   if client.server_capabilities.inlayHintProvider then vim.lsp.inlay_hint.enable(true, { bufnr = bufnr }) end
   -- other on_attach configs

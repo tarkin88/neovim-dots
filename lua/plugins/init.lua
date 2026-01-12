@@ -12,6 +12,10 @@ vim.pack.add({
   "https://github.com/andymass/vim-matchup",
   "https://github.com/ibhagwan/fzf-lua",
   "https://github.com/nvim-mini/mini.icons",
+  "https://github.com/nvim-mini/mini.move",
+  "https://github.com/nvim-mini/mini.pairs",
+  "https://github.com/nvim-mini/mini.clue",
+  "https://github.com/nvim-mini/mini.diff",
   { src = "https://github.com/Saghen/blink.cmp", version = "v1.8.0" },
 }, {
   load = function(p) vim.cmd("packadd " .. p.spec.name) end,
@@ -26,3 +30,4 @@ require("plugins.copilot")
 require("plugins.blink")
 require("plugins.treesitter")
 require("plugins.fzf")
+require("plugins.mini")

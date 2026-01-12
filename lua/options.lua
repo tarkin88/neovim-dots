@@ -56,6 +56,7 @@ vim.opt.listchars = {
 -- folding
 vim.opt.foldcolumn = "1"
 vim.opt.foldlevelstart = 99
+vim.opt.foldlevel = 10
 vim.wo.foldtext = " "
 vim.opt.fillchars = {
   fold = " ",
