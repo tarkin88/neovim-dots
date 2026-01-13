@@ -1,7 +1,7 @@
 {
   "plugins": {
     "SchemaStore.nvim": {
-      "rev": "f35b7747d4d536fba96aa098a4144e5c85252828",
+      "rev": "20ee0cad0b25e4a028d355c51b06d41eecb90d91",
       "src": "https://github.com/b0o/SchemaStore.nvim"
     },
     "artio.nvim": {
