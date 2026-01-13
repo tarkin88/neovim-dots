@@ -5,30 +5,7 @@ lze.load({
     "nvim-treesitter",
     event = { "BufReadPost", "BufNewFile" },
     after = function()
-      require("nvim-treesitter").setup({
-        ensure_installed = {
-          "bash",
-          "diff",
-          "dockerfile",
-          "fish",
-          "gitcommit",
-          "gitcommit",
-          "json",
-          "jsonc",
-          "lua",
-          "luadoc",
-          "luap",
-          "markdown",
-          "markdown_inline",
-          "python",
-          "query",
-          "regex",
-          "sql",
-          "toml",
-          "tsx",
-          "typescript",
-          "yaml",
-        },
+      require("nvim-treesitter.config").setup({
         highlight = {
           enable = true,
           additional_vim_regex_highlighting = false,
@@ -38,6 +15,29 @@ lze.load({
       })
 
       vim.g.matchup_matchparen_offscreen = { method = "popup" }
+
+      require("nvim-treesitter").install({
+        "bash",
+        "diff",
+        "dockerfile",
+        "fish",
+        "gitcommit",
+        "gitcommit",
+        "json",
+        "lua",
+        "luadoc",
+        "luap",
+        "markdown",
+        "markdown_inline",
+        "python",
+        "query",
+        "regex",
+        "sql",
+        "toml",
+        "tsx",
+        "typescript",
+        "yaml",
+      })
     end,
   },
 })
