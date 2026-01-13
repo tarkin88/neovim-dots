@@ -50,6 +50,15 @@ capabilities = vim.tbl_deep_extend("force", capabilities, {
   },
   keys = {},
 })
+
+-- on_attach for all servers
+local on_attach = function(client, bufnr)
+  -- enable native inlay hints if supported by the server
+  if client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
+    vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+  end
+end
+
 vim.lsp.config("*", {
   capabilities = capabilities,
 })
