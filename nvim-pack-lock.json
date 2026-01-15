@@ -1,12 +1,8 @@
 {
   "plugins": {
     "SchemaStore.nvim": {
-      "rev": "20ee0cad0b25e4a028d355c51b06d41eecb90d91",
+      "rev": "2a8afcddb67a14dc80001f074f1eecedac2f27a7",
       "src": "https://github.com/b0o/SchemaStore.nvim"
-    },
-    "artio.nvim": {
-      "rev": "cb862c152de92c70144043efce67f023f5f958ed",
-      "src": "https://github.com/comfysage/artio.nvim"
     },
     "blink-copilot": {
       "rev": "7ad8209b2f880a2840c94cdcd80ab4dc511d4f39",
@@ -41,10 +37,6 @@
       "rev": "44d1e90e1f66e077268191e3ee9d2ac97cc18e65",
       "src": "https://github.com/mason-org/mason.nvim"
     },
-    "mini-git": {
-      "rev": "df3881fec1d2fd7f8b9334821861de511e71f69e",
-      "src": "https://github.com/nvim-mini/mini-git"
-    },
     "mini.clue": {
       "rev": "e2f0c1eb3ce652e34b1e9a9c504a780acf3bd4e3",
       "src": "https://github.com/nvim-mini/mini.clue"
@@ -74,7 +66,7 @@
       "src": "https://github.com/nvim-mini/mini.pairs"
     },
     "nvim-treesitter": {
-      "rev": "5a7e5638e7d220575b1c22c8a2e099b52231886e",
+      "rev": "15b3416cc1f557c4932468e512a0bd45871167bc",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-treesitter-context": {

@@ -78,4 +78,26 @@ function M.gen_commit_for_buf(bufnr)
   vim.api.nvim_win_set_cursor(0, { 1, #lines[1] })
 end
 
+function M.packclean()
+  local inactive_plugins = vim
+    .iter(vim.pack.get())
+    :filter(function(x) return not x.active end)
+    :map(function(x) return x.spec.name end)
+    :totable()
+
+  if #inactive_plugins == 0 then
+    vim.notify("✓ No plugins to delete", vim.log.levels.INFO)
+    return
+  end
+
+  vim.notify(
+    "Removing " .. #inactive_plugins .. " plugins:\n" .. table.concat(inactive_plugins, "\n"),
+    vim.log.levels.WARN
+  )
+
+  vim.pack.del(inactive_plugins)
+
+  vim.notify("✓ Done", vim.log.levels.INFO)
+end
+
 return M
