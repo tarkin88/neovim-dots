@@ -68,26 +68,12 @@ vim.opt.fillchars = {
   foldinner = " ",
 }
 -- file explorer
-vim.g.netrw_liststyle = 0 -- Use the long listing view
+vim.g.netrw_liststyle = 3
 vim.g.netrw_banner = 0
 vim.g.netrw_fastbrowse = 2
-vim.g.netrw_winsize = 30
+vim.g.netrw_winsize = 20
 vim.g.netrw_browse_split = 4
 vim.g.netrw_left = 1
--- vim.g.netrw_sort_by = "size" -- Sort files by size
-
--- vim.schedule(
---   function()
---     require("vim._extui").enable({
---       enable = true,
---       msg = {
---         target = "msg",
---         timeout = 6000,
---       },
---     })
---   end
--- )
-
 -- Disable health checks for these providers.
 vim.g.loaded_python3_provider = 0
 vim.g.loaded_ruby_provider = 0
