@@ -11,11 +11,13 @@ vim.pack.add({
   "https://github.com/stevearc/conform.nvim",
   "https://github.com/andymass/vim-matchup",
   "https://github.com/ibhagwan/fzf-lua",
+  "https://github.com/lewis6991/gitsigns.nvim",
   "https://github.com/nvim-mini/mini.move",
   "https://github.com/nvim-mini/mini.icons",
   "https://github.com/nvim-mini/mini.pairs",
   "https://github.com/nvim-mini/mini.clue",
-  "https://github.com/nvim-mini/mini.diff",
+  "https://github.com/nvim-mini/mini.notify",
+  "https://github.com/nvim-mini/mini.starter",
   "https://github.com/nvim-mini/mini.hipatterns",
   "https://github.com/nvim-mini/mini.indentscope",
   { src = "https://github.com/Saghen/blink.cmp", version = vim.version.range("^1") },
@@ -27,7 +29,7 @@ vim.pack.add({
 -- specs
 require("plugins.treesitter")
 require("plugins.mason")
-require("plugins.schemastore")
+require("plugins.gitsigns")
 require("plugins.conform")
 require("plugins.copilot")
 require("plugins.blink")

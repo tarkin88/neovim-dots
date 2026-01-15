@@ -7,14 +7,30 @@ lze.load({
     after = function() require("mini.move").setup() end,
   },
   {
-    "mini.diff",
-    event = { "BufReadPost" },
-    after = function() require("mini.diff").setup() end,
-  },
-  {
     "mini.pairs",
     event = { "BufReadPost" },
     after = function() require("mini.pairs").setup() end,
+  },
+  {
+    "mini.starter",
+    event = { "VimEnter" },
+    after = function()
+      local starter = require("mini.starter")
+      starter.setup({
+        items = {
+          starter.sections.recent_files(10, true),
+          { name = "Config", action = "edit ~/.config/nvim/init.lua", section = "Config" },
+          { name = "Quit", action = "qall!", section = "Quit" },
+        },
+
+        header = function() return "  🐧  Minimal Neovim 🐧" end,
+        content_hooks = {
+          starter.gen_hook.adding_bullet("  "),
+          starter.gen_hook.aligning("center", "center"),
+        },
+        silent = true,
+      })
+    end,
   },
   {
     "mini.indentscope",
@@ -23,6 +39,34 @@ lze.load({
       require("mini.indentscope").setup({
         symbol = "▎",
       })
+    end,
+  },
+  {
+    "mini.notify",
+    event = { "BufReadPost" },
+    after = function()
+      local MiniNotify = require("mini.notify")
+
+      MiniNotify.setup({
+        lsp_progress = { enable = true },
+        content = {
+          format = function(notif)
+            local msg = notif.message or notif.msg or "[no message]"
+            return vim.trim(msg):gsub("\n", " ")
+          end,
+        },
+        window = {
+          config = {
+            anchor = "SE",
+            col = vim.o.columns - 3,
+            row = vim.o.lines - 3,
+            border = "single",
+          },
+          max_width_share = 0.35,
+        },
+      })
+
+      vim.notify = MiniNotify.make_notify({ ERROR = { duration = 10000 } })
     end,
   },
   {
