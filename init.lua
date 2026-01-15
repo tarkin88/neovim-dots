@@ -4,5 +4,7 @@ require("autocmds")
 require("lsp")
 require("plugins")
 require("commands")
+require("ui.statusline").setup()
+require("ui.tabline").setup()
 
 vim.cmd.colorscheme("retrobox")
