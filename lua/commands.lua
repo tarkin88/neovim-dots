@@ -100,4 +100,21 @@ function M.packclean()
   vim.notify("✓ Done", vim.log.levels.INFO)
 end
 
+function M.toggle_netrw()
+  if vim.bo.filetype == "netrw" then
+    vim.cmd("Lexplore")
+  else
+    local found = false
+    for _, win in ipairs(vim.api.nvim_list_wins()) do
+      local buf = vim.api.nvim_win_get_buf(win)
+      if vim.bo[buf].filetype == "netrw" then
+        vim.api.nvim_win_close(win, true)
+        found = true
+      end
+    end
+
+    if not found then vim.cmd("Lexplore %:p:h") end
+  end
+end
+
 return M

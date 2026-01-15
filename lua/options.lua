@@ -12,27 +12,29 @@ vim.opt.shortmess:append({
 })
 vim.opt.undofile = true -- enable persistent undo
 vim.opt.backup = false -- disable backup
+vim.opt.swapfile = false -- Disable swap files
 vim.opt.confirm = true -- Confirm to save changes before exiting modified buffer
 vim.opt.iskeyword = "@,48-57,_,192-255,-" -- Treat dash as `word` text-object part
 
 vim.opt.number = true -- Column with line number
 vim.opt.relativenumber = true -- Use relative line numbers
+vim.opt.numberwidth = 2 -- Width of the line number column
 vim.opt.colorcolumn = "80" -- Column at "x" chars
-vim.opt.signcolumn = "yes" -- Column for git status, diagnostics, etc.
+vim.opt.signcolumn = "yes:1" -- Column for git status, diagnostics, etc.
 vim.opt.laststatus = 3 -- Single status-line
 vim.opt.cursorline = true -- Highlight the entire current line
 vim.opt.winborder = "rounded" -- Set float borders
 vim.opt.pumborder = "rounded" -- Set pop-up menu borders
 vim.opt.termguicolors = true -- Force enable 24-bit RGB color
 vim.opt.wrap = false -- Don't break lines
-vim.opt.scrolloff = 15 -- Lines to keep above/below cursor
+vim.opt.scrolloff = 10 -- Lines to keep above/below cursor
 vim.opt.sidescrolloff = 10 -- Lines to keep left/right cursor
 vim.opt.splitbelow = true -- Open splits below current
 vim.opt.splitright = true -- Open split right of current
 vim.opt.ignorecase = true -- Ignore case when searching
 vim.opt.hlsearch = true -- highlight search results as you type.
 vim.opt.smartcase = true -- Fallback to exact case, when upper case is used
-vim.opt.inccommand = "split" -- preview substitutions live
+vim.opt.inccommand = "nosplit" -- Shows the effects of a command incrementally in the buffer
 vim.opt.spell = true -- enable spelling
 vim.opt.spelllang = "en_us,es_mx" -- set spelling languages
 vim.opt.expandtab = true -- Expand real tabs to spaces
@@ -65,16 +67,26 @@ vim.opt.fillchars = {
   foldsep = " ",
   foldinner = " ",
 }
+-- file explorer
+vim.g.netrw_liststyle = 0 -- Use the long listing view
+vim.g.netrw_banner = 0
+vim.g.netrw_fastbrowse = 2
+vim.g.netrw_winsize = 30
+vim.g.netrw_browse_split = 4
+vim.g.netrw_left = 1
+-- vim.g.netrw_sort_by = "size" -- Sort files by size
 
--- vim.schedule(function()
---   require('vim._extui').enable({
---     enable = true,
---     msg = {
---     target = 'msg',
---     timeout = 6000,
---     },
---   })
--- end)
+-- vim.schedule(
+--   function()
+--     require("vim._extui").enable({
+--       enable = true,
+--       msg = {
+--         target = "msg",
+--         timeout = 6000,
+--       },
+--     })
+--   end
+-- )
 
 -- Disable health checks for these providers.
 vim.g.loaded_python3_provider = 0

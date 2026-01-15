@@ -11,7 +11,7 @@ lze.load({
       conform.setup({
         formatters_by_ft = {
           lua = { "stylua" },
-          python = { "ruff" },
+          python = { "ruff_format" },
           markdown = { "prettier" },
           javascript = { "prettier" },
           typescript = { "prettier" },

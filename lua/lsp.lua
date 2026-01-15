@@ -51,14 +51,6 @@ capabilities = vim.tbl_deep_extend("force", capabilities, {
   keys = {},
 })
 
--- on_attach for all servers
-local on_attach = function(client, bufnr)
-  -- enable native inlay hints if supported by the server
-  if client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
-    vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
-  end
-end
-
 vim.lsp.config("*", {
   capabilities = capabilities,
 })
@@ -76,13 +68,12 @@ local servers = {
 
 vim.lsp.enable(servers)
 
+local on_attach = function(client, bufnr)
+  if client.server_capabilities.inlayHintProvider then vim.lsp.inlay_hint.enable(true, { bufnr = bufnr }) end
+end
+
 local map = vim.keymap.set
 
 map("n", "grf", vim.lsp.buf.format, { desc = "Format buffer" })
 map("n", "gd", vim.lsp.buf.definition, { desc = "Definitions" })
 map("n", "gD", vim.lsp.buf.declaration, { desc = "Declarations" })
-
-local on_attach = function(client, bufnr)
-  if client.server_capabilities.inlayHintProvider then vim.lsp.inlay_hint.enable(true, { bufnr = bufnr }) end
-  -- other on_attach configs
-end
