@@ -17,7 +17,6 @@ vim.pack.add({
   "https://github.com/nvim-mini/mini.pairs",
   "https://github.com/nvim-mini/mini.clue",
   "https://github.com/nvim-mini/mini.notify",
-  "https://github.com/nvim-mini/mini.starter",
   "https://github.com/nvim-mini/mini.hipatterns",
   "https://github.com/nvim-mini/mini.indentscope",
   { src = "https://github.com/Saghen/blink.cmp", version = vim.version.range("^1") },
@@ -33,5 +32,5 @@ require("plugins.gitsigns")
 require("plugins.conform")
 require("plugins.copilot")
 require("plugins.blink")
-require("plugins.fzf")
 require("plugins.mini")
+require("plugins.fzf")

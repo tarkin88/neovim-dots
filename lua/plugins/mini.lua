@@ -12,27 +12,6 @@ lze.load({
     after = function() require("mini.pairs").setup() end,
   },
   {
-    "mini.starter",
-    event = { "VimEnter" },
-    after = function()
-      local starter = require("mini.starter")
-      starter.setup({
-        items = {
-          starter.sections.recent_files(10, true),
-          { name = "Config", action = "edit ~/.config/nvim/init.lua", section = "Config" },
-          { name = "Quit", action = "qall!", section = "Quit" },
-        },
-
-        header = function() return "  🐧  Minimal Neovim 🐧" end,
-        content_hooks = {
-          starter.gen_hook.adding_bullet("  "),
-          starter.gen_hook.aligning("center", "center"),
-        },
-        silent = true,
-      })
-    end,
-  },
-  {
     "mini.indentscope",
     event = { "BufReadPost" },
     after = function()

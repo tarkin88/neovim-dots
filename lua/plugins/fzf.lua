@@ -19,15 +19,25 @@ lze.load({
         height = 0.45,
         width = 0.40,
         preview = {
-          border = "rounded",
-          layout = "flex",
           hidden = true,
         },
       },
       files = {
         cmd = "fd --type f --hidden --strip-cwd-prefix --exclude .git",
+        file_ignore_patterns = {
+          "%.git/",
+          "COMMIT_EDITMSG",
+          "%.git/COMMIT_EDITMSG",
+        },
         git_icons = true,
         file_icons = "mini",
+      },
+      oldfiles = {
+        file_icons = "mini",
+        file_ignore_patterns = {
+          "%.git/",
+          "COMMIT_EDITMSG",
+        },
       },
       grep = {
         rg_opts = "--hidden --glob '!.git' --column --line-number --no-heading --color=always --smart-case",

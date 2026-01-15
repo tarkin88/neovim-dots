@@ -1,8 +1,6 @@
 -- -----------------------------------------------------------------------------
 -- > Options
 -- -----------------------------------------------------------------------------
-local arrows = require("icons").arrows
-
 vim.g.mapleader = " " -- Set the leader key prefix
 -- vim.opt.clipboard:append("unnamedplus") -- Use the system clipboard for all operations
 vim.opt.shortmess:append({
@@ -64,8 +62,8 @@ vim.opt.foldlevel = 10
 vim.wo.foldtext = " "
 vim.opt.fillchars = {
   fold = " ",
-  foldclose = arrows.right,
-  foldopen = arrows.down,
+  foldclose = "",
+  foldopen = "",
   foldsep = " ",
   foldinner = " ",
 }
