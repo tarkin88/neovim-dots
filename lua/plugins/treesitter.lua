@@ -22,7 +22,6 @@ lze.load({
         "dockerfile",
         "fish",
         "gitcommit",
-        "gitcommit",
         "json",
         "lua",
         "luadoc",

@@ -27,7 +27,7 @@ lze.load({
       files = {
         cmd = "fd --type f --hidden --strip-cwd-prefix --exclude .git",
         git_icons = true,
-        file_icons = true,
+        file_icons = "mini",
       },
       grep = {
         rg_opts = "--hidden --glob '!.git' --column --line-number --no-heading --color=always --smart-case",
