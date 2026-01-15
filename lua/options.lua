@@ -10,6 +10,8 @@ vim.opt.shortmess:append({
   s = true, -- Shorten "[Search]" messages.
   I = true, -- disable welcome message
 })
+vim.opt.shada:append("r/\\.git/")
+vim.opt.shada:append("rCOMMIT_EDITMSG")
 vim.opt.undofile = true -- enable persistent undo
 vim.opt.backup = false -- disable backup
 vim.opt.swapfile = false -- Disable swap files
