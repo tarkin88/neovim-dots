@@ -27,7 +27,7 @@ lze.load({
       local MiniNotify = require("mini.notify")
 
       MiniNotify.setup({
-        lsp_progress = { enable = true },
+        lsp_progress = { enable = false },
         content = {
           format = function(notif)
             local msg = notif.message or notif.msg or "[no message]"
