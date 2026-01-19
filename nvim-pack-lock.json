@@ -78,7 +78,7 @@
       "src": "https://github.com/nvim-mini/mini.pairs"
     },
     "nvim-treesitter": {
-      "rev": "b9933f0e1386c7b63fe131d9979d9c2613da551a",
+      "rev": "e75c007f2747050c2c620dc862c77b8f242551a8",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-treesitter-context": {

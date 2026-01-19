@@ -19,6 +19,15 @@ lze.load({
           dismiss = "<Esc>",
         },
       },
+      keymap = {
+        accept = "<CR>",
+        accept_word = false,
+        accept_line = false,
+        next = "<M-]>",
+        prev = "<M-[>",
+        dismiss = "<C-]>",
+        toggle_auto_trigger = false,
+      },
       logger = {
         file_log_level = vim.log.levels.OFF,
         print_log_level = vim.log.levels.WARN,
@@ -28,6 +37,15 @@ lze.load({
       },
       copilot_node_command = "node",
       server = { type = "nodejs" },
+      filetypes = {
+        markdown = true,
+        python = true,
+        lua = true,
+        javascript = true,
+        typescript = true,
+        bash = true,
+        ["*"] = false,
+      },
     })
   end,
 })
