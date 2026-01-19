@@ -142,26 +142,3 @@ vim.api.nvim_create_autocmd("FileType", {
     end)
   end,
 })
-
--- starter
-vim.api.nvim_create_autocmd("VimEnter", {
-  callback = function()
-    if #vim.api.nvim_list_bufs() == 1 and vim.fn.argc() == 0 then
-      require("mini.icons").setup()
-
-      require("fzf-lua").combine({
-        pickers = { "oldfiles", "git_files" },
-        git_files = {
-          git_icons = true,
-          file_icons = "mini",
-        },
-        previewer = false,
-        winopts = {
-          height = 0.45,
-          width = 0.40,
-          border = "rounded",
-        },
-      })
-    end
-  end,
-})
