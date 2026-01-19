@@ -14,8 +14,16 @@
       "version": "1.0.0 - 2.0.0"
     },
     "conform.nvim": {
-      "rev": "238f542a118984a88124fc915d5b981680418707",
+      "rev": "c2526f1cde528a66e086ab1668e996d162c75f4f",
       "src": "https://github.com/stevearc/conform.nvim"
+    },
+    "copilot-lsp": {
+      "rev": "1b6d8273594643f51bb4c0c1d819bdb21b42159d",
+      "src": "https://github.com/copilotlsp-nvim/copilot-lsp"
+    },
+    "copilot.lua": {
+      "rev": "2d7511494245129aa6c2176f9c71cc2bc1360ed9",
+      "src": "https://github.com/zbirenbaum/copilot.lua"
     },
     "copilot.vim": {
       "rev": "a12fd5672110c8aa7e3c8419e28c96943ca179be",
@@ -26,7 +34,7 @@
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "fzf-lua": {
-      "rev": "e7773d0c863a31bfc8ab72dd1adbec4611a35409",
+      "rev": "518ab7a64ca65899a218f364f0fb9e38ff7bdcc8",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "gitsigns.nvim": {
@@ -34,7 +42,7 @@
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "lze": {
-      "rev": "ab1c3202c62fc19a33ede14a8b6fc66e772b91d7",
+      "rev": "8a82d5a618593b55057b8ecf4156ef75e19b6f21",
       "src": "https://github.com/BirdeeHub/lze"
     },
     "mason.nvim": {
@@ -70,7 +78,7 @@
       "src": "https://github.com/nvim-mini/mini.pairs"
     },
     "nvim-treesitter": {
-      "rev": "15b3416cc1f557c4932468e512a0bd45871167bc",
+      "rev": "b9933f0e1386c7b63fe131d9979d9c2613da551a",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-treesitter-context": {
