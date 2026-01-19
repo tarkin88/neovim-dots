@@ -1,18 +1,18 @@
 local lze = require("lze")
 
 lze.load({
-    "mason.nvim",
-    cmd = { "Mason", "MasonInstall", "MasonUpdate" }, 
-    event = { "BufReadPre", "BufNewFile" },
-    after = function()
-      require("mason").setup({
-        ui = {
-          border = "rounded",
-        },
-        max_concurrent_installers = 5,
-      })
+  "mason.nvim",
+  cmd = { "Mason", "MasonInstall", "MasonUpdate" },
+  event = { "BufReadPre", "BufNewFile" },
+  after = function()
+    require("mason").setup({
+      ui = {
+        border = "rounded",
+      },
+      max_concurrent_installers = 5,
+    })
 
-       local ensure_installed = {
+    local ensure_installed = {
       "basedpyright",
       "bash-language-server",
       "codespell",
@@ -33,15 +33,10 @@ lze.load({
       "yaml-language-server",
     }
 
-      local mr = require("mason-registry")
-      for _, tool in ipairs(ensure_installed) do
-        local p = mr.get_package(tool)
-        if not p:is_installed() then
-          p:install()
-        end
-      end
-
-    end,
-  }
-)
-
+    local mr = require("mason-registry")
+    for _, tool in ipairs(ensure_installed) do
+      local p = mr.get_package(tool)
+      if not p:is_installed() then p:install() end
+    end
+  end,
+})

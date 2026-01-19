@@ -4,8 +4,11 @@ vim.pack.add({
   "https://github.com/nvim-treesitter/nvim-treesitter-context",
   "https://github.com/folke/ts-comments.nvim",
   "https://github.com/b0o/SchemaStore.nvim",
+  "https://github.com/zbirenbaum/copilot.lua",
+  "https://github.com/copilotlsp-nvim/copilot-lsp",
+
   "https://github.com/fang2hou/blink-copilot",
-  "https://github.com/github/copilot.vim",
+  -- "https://github.com/github/copilot.vim",
   "https://github.com/mason-org/mason.nvim",
   "https://github.com/rafamadriz/friendly-snippets",
   "https://github.com/stevearc/conform.nvim",

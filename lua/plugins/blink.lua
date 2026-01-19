@@ -10,11 +10,13 @@ lze.load({
       keymap = {
         preset = "default",
         ["<CR>"] = { "select_and_accept", "fallback" },
+        ["<C-Space>"] = { "show", "show_documentation", "hide_documentation" },
       },
       appearance = {
         use_nvim_cmp_as_default = true,
         nerd_font_variant = "mono",
       },
+
       cmdline = { enabled = false },
 
       completion = {
@@ -41,25 +43,40 @@ lze.load({
       sources = {
         default = {
           "lsp",
-          "copilot",
-          "snippets",
           "path",
+          "snippets",
           "buffer",
+          "copilot",
         },
         providers = {
+          lsp = {
+            name = "lsp",
+            enabled = true,
+            async = true,
+            module = "blink.cmp.sources.lsp",
+            kind = "LSP",
+            min_keyword_length = 0,
+          },
           copilot = {
+            enabled = true,
             name = "copilot",
             module = "blink-copilot",
-            score_offset = -10,
+            score_offset = 100,
             async = true,
             opts = {
               kind_hl = "BlinkCmpKindCopilot",
+              max_completions = 3,
+              max_attempts = 4,
+              kind = "Copilot",
+              debounce = 750,
             },
           },
         },
       },
       signature = { enabled = true },
-      fuzzy = { implementation = "prefer_rust_with_warning" },
+      fuzzy = {
+        implementation = "prefer_rust",
+      },
     })
   end,
 })
