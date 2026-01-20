@@ -25,10 +25,6 @@
       "rev": "2d7511494245129aa6c2176f9c71cc2bc1360ed9",
       "src": "https://github.com/zbirenbaum/copilot.lua"
     },
-    "copilot.vim": {
-      "rev": "a12fd5672110c8aa7e3c8419e28c96943ca179be",
-      "src": "https://github.com/github/copilot.vim"
-    },
     "friendly-snippets": {
       "rev": "572f5660cf05f8cd8834e096d7b4c921ba18e175",
       "src": "https://github.com/rafamadriz/friendly-snippets"
@@ -50,7 +46,7 @@
       "src": "https://github.com/mason-org/mason.nvim"
     },
     "mini.clue": {
-      "rev": "e2f0c1eb3ce652e34b1e9a9c504a780acf3bd4e3",
+      "rev": "2648303d5003cc508c6430937f8dd3a9a9702a28",
       "src": "https://github.com/nvim-mini/mini.clue"
     },
     "mini.hipatterns": {
