@@ -17,7 +17,7 @@ lze.load({
       interactions = {
         chat = {
           adapter = "copilot",
-          model = "claude-sonnet-4",
+          model = "claude-sonnet-4-20250514",
           opts = {
             completion_provider = "blink",
           },
@@ -34,7 +34,7 @@ lze.load({
       },
       extensions = {
         history = {
-          enabled = true, -- defaults to true
+          enabled = true,
           opts = {
             picker = "fzf-lua",
             dir_to_save = vim.fn.stdpath("data") .. "/codecompanion_chats.json",
@@ -54,5 +54,6 @@ lze.load({
 
     map({ "n", "v" }, "<leader>cc", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Open Chat" })
     map({ "n", "v" }, "<leader>ca", "<cmd>CodeCompanionActions<cr>", { desc = "Code Actions" })
+    map({ "n", "v" }, "<leader>ce", "<cmd>CodeCompanion<cr>", { desc = "Inline" })
   end,
 })
