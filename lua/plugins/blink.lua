@@ -43,10 +43,10 @@ lze.load({
       sources = {
         default = {
           "lsp",
+          "copilot",
+          "buffer",
           "path",
           "snippets",
-          "buffer",
-          "copilot",
         },
         providers = {
           lsp = {
@@ -54,7 +54,6 @@ lze.load({
             enabled = true,
             async = true,
             module = "blink.cmp.sources.lsp",
-            kind = "LSP",
             min_keyword_length = 0,
           },
           copilot = {
@@ -63,6 +62,7 @@ lze.load({
             module = "blink-copilot",
             score_offset = 100,
             async = true,
+            min_keyword_length = 2,
             opts = {
               kind_hl = "BlinkCmpKindCopilot",
               max_completions = 3,
@@ -78,14 +78,14 @@ lze.load({
         implementation = "prefer_rust",
       },
     })
-    -- vim.api.nvim_create_autocmd("User", {
-    --   pattern = "BlinkCmpMenuOpen",
-    --   callback = function() vim.b.copilot_suggestion_hidden = true end,
-    -- })
-    --
-    -- vim.api.nvim_create_autocmd("User", {
-    --   pattern = "BlinkCmpMenuClose",
-    --   callback = function() vim.b.copilot_suggestion_hidden = false end,
-    -- })
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "BlinkCmpMenuOpen",
+      callback = function() vim.b.copilot_suggestion_hidden = true end,
+    })
+
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "BlinkCmpMenuClose",
+      callback = function() vim.b.copilot_suggestion_hidden = false end,
+    })
   end,
 })

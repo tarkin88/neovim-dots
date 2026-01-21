@@ -6,9 +6,11 @@ vim.pack.add({
   "https://github.com/b0o/SchemaStore.nvim",
   "https://github.com/zbirenbaum/copilot.lua",
   "https://github.com/copilotlsp-nvim/copilot-lsp",
-
   "https://github.com/fang2hou/blink-copilot",
-  -- "https://github.com/github/copilot.vim",
+  "https://github.com/nvim-lua/plenary.nvim",
+  "https://github.com/ravitemer/codecompanion-history.nvim",
+  "https://github.com/ravitemer/mcphub.nvim",
+  "https://github.com/olimorris/codecompanion.nvim",
   "https://github.com/mason-org/mason.nvim",
   "https://github.com/rafamadriz/friendly-snippets",
   "https://github.com/stevearc/conform.nvim",
@@ -33,7 +35,8 @@ require("plugins.treesitter")
 require("plugins.mason")
 require("plugins.gitsigns")
 require("plugins.conform")
-require("plugins.copilot")
+-- require("plugins.copilot")
+require("plugins.codecompanion")
 require("plugins.blink")
 require("plugins.mini")
 require("plugins.fzf")
