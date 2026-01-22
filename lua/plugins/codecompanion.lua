@@ -14,6 +14,13 @@ lze.load({
         show_token_count = true,
         show_tools_processing = true,
       },
+      prompt_library = {
+        markdown = {
+          dirs = {
+            "~/.config/nvim/prompts/",
+          },
+        },
+      },
       interactions = {
         chat = {
           adapter = "copilot",

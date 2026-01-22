@@ -14,11 +14,11 @@
       "version": "1.0.0 - 2.0.0"
     },
     "codecompanion-history.nvim": {
-      "rev": "8c6ca9f998aeef89f3543343070f8562bf911fb4",
+      "rev": "bc1b4fe06eaaf0aa2399be742e843c22f7f1652a",
       "src": "https://github.com/ravitemer/codecompanion-history.nvim"
     },
     "codecompanion.nvim": {
-      "rev": "b3851e752df63ccab70979427b490ecfffef2be1",
+      "rev": "c9d74dd667cf609b4f2064ae7f5471285b5356cb",
       "src": "https://github.com/olimorris/codecompanion.nvim"
     },
     "conform.nvim": {
@@ -58,7 +58,7 @@
       "src": "https://github.com/ravitemer/mcphub.nvim"
     },
     "mini.clue": {
-      "rev": "2648303d5003cc508c6430937f8dd3a9a9702a28",
+      "rev": "d846600d4664dc793aa29859ad135b1fd25d648b",
       "src": "https://github.com/nvim-mini/mini.clue"
     },
     "mini.hipatterns": {
@@ -82,7 +82,7 @@
       "src": "https://github.com/nvim-mini/mini.notify"
     },
     "mini.pairs": {
-      "rev": "d5a29b6254dad07757832db505ea5aeab9aad43a",
+      "rev": "4089aa6ea6423e02e1a8326a7a7a00159f6f5e04",
       "src": "https://github.com/nvim-mini/mini.pairs"
     },
     "nvim-treesitter": {
