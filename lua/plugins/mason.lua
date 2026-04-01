@@ -1,16 +1,15 @@
-local lze = require("lze")
-
-lze.load({
-  "mason.nvim",
+return {
+  "mason-org/mason.nvim",
   cmd = { "Mason", "MasonInstall", "MasonUpdate" },
   event = { "BufReadPre", "BufNewFile" },
-  after = function()
-    require("mason").setup({
-      ui = {
-        border = "rounded",
-      },
-      max_concurrent_installers = 5,
-    })
+  opts = {
+    ui = {
+      border = "rounded",
+    },
+    max_concurrent_installers = 5,
+  },
+  config = function(_, opts)
+    require("mason").setup(opts)
 
     local ensure_installed = {
       "basedpyright",
@@ -39,4 +38,4 @@ lze.load({
       if not p:is_installed() then p:install() end
     end
   end,
-})
+}
