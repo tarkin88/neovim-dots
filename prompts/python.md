@@ -1,7 +1,7 @@
 ---
-name: python workflow
+name: python UT
 interaction: chat
-description: Use a workflow to test the plugin
+description: Use a workflow to test the code
 opts:
   adapter:
     name: copilot
@@ -13,3 +13,7 @@ opts:
 ## user
 
 Write unit tests for this method/class using pytest.
+
+- AAA pattern.
+- No comments
+- Prefer mocking for unit test.
