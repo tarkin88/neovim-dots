@@ -42,6 +42,10 @@ Diff:
       or trimmed:match("^Total code changes:")
       or trimmed:match("^Usage by model:")
       or trimmed:match("^gpt%-5%-mini")
+      or trimmed:match("^API time spent:")
+      or trimmed:match("^Total session time:")
+      or trimmed:match("^Breakdown by AI model:")
+      or trimmed:match("^Co-authored-by:")
 
     if not is_meta then table.insert(lines, line) end
   end
