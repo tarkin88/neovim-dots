@@ -51,9 +51,9 @@ return {
           min_keyword_length = 0,
         },
       },
-      per_filetype = {
-        codecompanion = { "codecompanion" },
-      },
+      -- per_filetype = {
+      --   codecompanion = { "codecompanion" },
+      -- },
     },
   },
 }

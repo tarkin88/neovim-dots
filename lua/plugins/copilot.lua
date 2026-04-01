@@ -13,5 +13,12 @@ return {
         accept = false, -- handled by completion engine
       },
     },
+    filetypes = {
+      markdown = true,
+      ["*"] = true,
+    },
+    completion = {
+      model = "gpt-4o-copilot",
+    },
   },
 }

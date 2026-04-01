@@ -1,1 +1,4 @@
-vim.o.foldlevel = 2
+-- NOTE: Enable folding for Python files using the 'indent' method. This will allow you to fold code blocks based on their indentation levels.
+--
+-- vim.o.foldlevel = 1
+-- vim.opt.foldlevelstart = 1

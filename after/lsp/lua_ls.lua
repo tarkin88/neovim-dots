@@ -21,6 +21,9 @@ return {
         enable = true,
         callSnippet = "Replace",
       },
+      codeLens = {
+        enable = true,
+      },
       runtime = {
         version = "LuaJIT",
         path = vim.split(package.path, ";"),
@@ -30,6 +33,9 @@ return {
         globals = { "vim" },
         disable = { "missing-fields" },
       },
+      doc = {
+        privateName = { "^_" },
+      },
       workspace = {
         checkThirdParty = false,
         ignoreSubmodules = true,
@@ -37,6 +43,11 @@ return {
       },
       hint = {
         enable = true,
+        setType = false,
+        paramType = true,
+        paramName = "Disable",
+        semicolon = "Disable",
+        arrayIndex = "Disable",
       },
     },
   },

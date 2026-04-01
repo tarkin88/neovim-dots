@@ -37,10 +37,18 @@ return {
   settings = {
     basedpyright = {
       analysis = {
-        typeCheckingMode = "basic",
+        typeCheckingMode = "standard",
         autoSearchPaths = true,
         diagnosticMode = "openFilesOnly",
         disableOrganizeImports = true,
+        diagnosticSeverityOverrides = {
+          reportUnreachable = "none",
+        },
+        inlayHints = {
+          variableTypes = false,
+          functionReturnTypes = true,
+          callArgumentNames = true,
+        },
       },
     },
   },

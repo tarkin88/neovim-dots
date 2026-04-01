@@ -2,7 +2,7 @@ return {
   "nvim-treesitter/nvim-treesitter",
   dependencies = {
     "nvim-treesitter/nvim-treesitter-context",
-    -- "andymass/vim-matchup",
+    "andymass/vim-matchup",
     "folke/ts-comments.nvim",
     "andersevenrud/nvim_context_vt",
   },
@@ -19,11 +19,11 @@ return {
   config = function(_, opts)
     require("nvim-treesitter.config").setup(opts)
 
-    -- require("match-up").setup({
-    --   treesitter = {
-    --     stopline = 500,
-    --   },
-    -- })
+    require("match-up").setup({
+      treesitter = {
+        stopline = 500,
+      },
+    })
 
     require("treesitter-context").setup({
       enable = true,
@@ -31,7 +31,7 @@ return {
       trim_scope = "outer",
     })
 
-    -- vim.g.matchup_matchparen_offscreen = { method = "popup" }
+    vim.g.matchup_matchparen_offscreen = { method = "popup" }
 
     require("nvim-treesitter").install({
       "bash",

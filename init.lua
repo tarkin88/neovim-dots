@@ -7,6 +7,8 @@ require("ui.tabline").setup()
 
 vim.cmd.colorscheme("retrobox")
 
+require("ui.overrides")
+
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then

@@ -1,6 +1,5 @@
 return {
   "olimorris/codecompanion.nvim",
-  event = "User AstroFile",
   cmd = {
     "CodeCompanion",
     "CodeCompanionActions",
