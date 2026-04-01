@@ -48,7 +48,7 @@ Diff:
       or trimmed:match("^API time spent:")
       or trimmed:match("^Total session time:")
       or trimmed:match("^Breakdown by AI model:")
-      or trimmed:match("^authored-by:")
+      or trimmed:match("^Co%-authored%-by:")
 
     if not is_meta then table.insert(lines, line) end
   end
