@@ -1,5 +1,8 @@
 local M = {}
 
+---
+-- Generates an AI-powered commit message suggestion.
+-- @return string: The suggested commit message.
 local function get_ai_commit_message()
   local diff = vim.fn.system("git diff --cached")
   if vim.v.shell_error ~= 0 or diff == "" then return nil, "No staged changes" end
@@ -45,7 +48,7 @@ Diff:
       or trimmed:match("^API time spent:")
       or trimmed:match("^Total session time:")
       or trimmed:match("^Breakdown by AI model:")
-      or trimmed:match("^Co-authored-by:")
+      or trimmed:match("^authored-by:")
 
     if not is_meta then table.insert(lines, line) end
   end
@@ -80,28 +83,6 @@ function M.gen_commit_for_buf(bufnr)
   vim.api.nvim_buf_set_lines(bufnr, #lines, #lines, false, { "" })
 
   vim.api.nvim_win_set_cursor(0, { 1, #lines[1] })
-end
-
-function M.packclean()
-  local inactive_plugins = vim
-    .iter(vim.pack.get())
-    :filter(function(x) return not x.active end)
-    :map(function(x) return x.spec.name end)
-    :totable()
-
-  if #inactive_plugins == 0 then
-    vim.notify("✓ No plugins to delete", vim.log.levels.INFO)
-    return
-  end
-
-  vim.notify(
-    "Removing " .. #inactive_plugins .. " plugins:\n" .. table.concat(inactive_plugins, "\n"),
-    vim.log.levels.WARN
-  )
-
-  vim.pack.del(inactive_plugins)
-
-  vim.notify("✓ Done", vim.log.levels.INFO)
 end
 
 function M.toggle_netrw()
