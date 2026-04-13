@@ -15,7 +15,7 @@ return {
       sh = { "shfmt" },
       bash = { "shfmt" },
       toml = { "taplo" },
-      sql = { "sqlfluff" },
+      postgresql = { "pgformatter" },
       ["*"] = { "codespell" },
       ["_"] = { "trim_whitespace" },
     },

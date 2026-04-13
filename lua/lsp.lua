@@ -114,6 +114,7 @@ local servers = {
   "taplo",
   "basedpyright",
   "ruff",
+  "postgres_lsp",
   "docker_language_server",
   "markdown-oxide",
 }
