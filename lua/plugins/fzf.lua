@@ -30,6 +30,10 @@ return {
       rg_opts = "--hidden --glob '!.git' --column --line-number --no-heading --color=always --smart-case",
     },
   },
+  config = function(_, opts)
+    require("fzf-lua").setup(opts)
+    require("fzf-lua").register_ui_select()
+  end,
   keys = {
     { "<leader>f", "", desc = "Search" },
     { "<leader><leader>", "<cmd>FzfLua files<CR>", desc = "Smart Search" },
