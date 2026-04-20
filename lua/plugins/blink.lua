@@ -1,7 +1,39 @@
 return {
   "saghen/blink.cmp",
   version = "1.*",
-  dependencies = { "rafamadriz/friendly-snippets" },
+  dependencies = {
+    {
+      "saghen/blink.pairs",
+      version = "*",
+      dependencies = "saghen/blink.download",
+      opts = {
+        mappings = {
+          enabled = true,
+          cmdline = true,
+          disabled_filetypes = {},
+          wrap = {
+            -- move closing pair via motion
+            ["<C-b>"] = "motion",
+            -- move opening pair via motion
+            ["<C-S-b>"] = "motion_reverse",
+          },
+          pairs = {},
+        },
+        highlights = {
+          enabled = true,
+          cmdline = true,
+          matchparen = {
+            enabled = true,
+            cmdline = false,
+            include_surrounding = false,
+            priority = 250,
+          },
+        },
+        debug = false,
+      },
+    },
+    "rafamadriz/friendly-snippets",
+  },
   event = { "InsertEnter" },
   opts = {
     keymap = {
