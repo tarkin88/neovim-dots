@@ -21,13 +21,6 @@ return {
     end,
   },
 
-  {
-    "echasnovski/mini.pairs",
-    event = "InsertEnter",
-    version = false,
-    opts = {},
-  },
-
   { "nvim-mini/mini.indentscope", event = "BufReadPre", version = false, opts = {
     symbol = "▏",
   } },
