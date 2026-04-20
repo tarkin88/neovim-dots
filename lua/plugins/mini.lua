@@ -20,8 +20,4 @@ return {
       })
     end,
   },
-
-  { "nvim-mini/mini.indentscope", event = "BufReadPre", version = false, opts = {
-    symbol = "▏",
-  } },
 }

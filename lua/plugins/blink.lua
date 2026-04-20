@@ -32,6 +32,21 @@ return {
         debug = false,
       },
     },
+    {
+      "saghen/blink.indent",
+      event = { "BufReadPre", "BufNewFile" },
+      opts = {
+        static = {
+          enabled = false,
+        },
+        scope = {
+          enabled = true,
+          underline = {
+            enabled = true,
+          },
+        },
+      },
+    },
     "rafamadriz/friendly-snippets",
   },
   event = { "InsertEnter" },
