@@ -14,5 +14,4 @@ map("n", "<leader>uc", function() require("commands").packclean() end, { desc = 
 map("v", "<Leader>p", '"_dP') -- Paste without overwriting the default register
 map("v", "<leader>y", '"+y', { desc = "Copy yank to clipboard", noremap = true })
 
-map("n", "<Leader>e", function() require("commands").toggle_netrw() end, { desc = "toggle Netwr" })
 map("n", "<Leader>bd", "<cmd>bdelete<CR>", { desc = "Close current buffer" })
