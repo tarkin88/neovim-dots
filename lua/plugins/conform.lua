@@ -12,6 +12,7 @@ return {
       css = { "prettier" },
       less = { "prettier" },
       yaml = { "prettier" },
+      json = { "prettier" },
       sh = { "shfmt" },
       bash = { "shfmt" },
       toml = { "taplo" },

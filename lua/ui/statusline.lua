@@ -83,7 +83,7 @@ M.setup = function()
     end,
   })
 
-  vim.api.nvim_create_autocmd({ "DiagnosticChanged", "LspProgress", "BufModifiedSet" }, {
+  vim.api.nvim_create_autocmd({ "DiagnosticChanged", "LspProgress" }, {
     group = vim.api.nvim_create_augroup("LineUpdate", { clear = true }),
     callback = vim.schedule_wrap(function() vim.cmd("redrawstatus") end),
   })
