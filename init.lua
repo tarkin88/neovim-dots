@@ -2,9 +2,9 @@ require("options")
 require("mappings")
 require("autocmds")
 require("commands")
-require("ui.statusline").setup()
-require("ui.tabline").setup()
-require("ui.winbar")
+-- require("ui.statusline")
+-- require("ui.tabline").setup()
+-- require("ui.winbar")
 
 -- vim.cmd.colorscheme("retrobox")
 

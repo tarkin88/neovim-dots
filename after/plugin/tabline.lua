@@ -6,7 +6,7 @@ local function get_buf_name(buf)
   return vim.fn.fnamemodify(name, ":t")
 end
 
-M.render = function()
+function Render()
   local current = vim.api.nvim_get_current_buf()
   local parts = {}
 
@@ -31,9 +31,7 @@ M.render = function()
   return table.concat(parts, "")
 end
 
-M.setup = function()
-  vim.o.showtabline = 2
-  vim.o.tabline = "%!v:lua.require('ui.tabline').render()"
-end
+vim.o.showtabline = 2
+vim.o.tabline = "%!v:lua.Render()"
 
 return M

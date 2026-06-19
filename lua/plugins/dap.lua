@@ -32,7 +32,6 @@ return {
     },
     config = function()
       local dap = require("dap")
-      -- local dapui = require("dapui")
       local dap_python = require("dap-python")
 
       vim.cmd("hi DapBreakpointColor guifg=#E37C68")
