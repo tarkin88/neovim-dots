@@ -19,37 +19,29 @@ local function get_git_branch()
 end
 
 M.active = function()
-  local mode = vim.fn.mode()
-  local current_mode = mode:upper()
-
-  local filename = vim.fn.expand("%:t")
+  local mode = vim.fn.mode():upper()
+  local filename = vim.fn.expand("%f")
   if filename == "" then filename = "[No Name]" end
 
-  local modified = vim.bo.modified and "●" or ""
-  local readonly = vim.bo.readonly and "RO" or ""
+  local modified = vim.bo.modified and " ●" or ""
+  local readonly = vim.bo.readonly and " RO" or ""
 
   local branch = get_git_branch()
-  local branch_str = branch and " " .. "[ " .. branch .. " ]" or ""
+  local branch_str = branch and " [ " .. branch .. " ]" or ""
 
-  local diagnostics = ""
   local counts = vim.diagnostic.count(0) or {}
+  local errors = counts[vim.diagnostic.severity.ERROR] or 0
+  local warnings = counts[vim.diagnostic.severity.WARN] or 0
 
-  if (counts[vim.diagnostic.severity.ERROR] or 0) > 0 then
-    diagnostics = diagnostics .. "✘ " .. counts[vim.diagnostic.severity.ERROR] .. " "
-  end
-  if (counts[vim.diagnostic.severity.WARN] or 0) > 0 then
-    diagnostics = diagnostics .. "⚠ " .. counts[vim.diagnostic.severity.WARN] .. " "
-  end
+  local err_str = "%#DiagnosticError#✘ " .. errors .. "%#LineRight# "
+  local warn_str = "%#DiagnosticWarn#⚠ " .. warnings .. "%#LineRight# "
 
-  local left = " " .. current_mode .. " "
-  local center_content = filename
-    .. (modified ~= "" and " " .. modified or "")
-    .. (readonly ~= "" and " " .. readonly or "")
-    .. branch_str
+  local left = " " .. mode .. " "
+  local center = filename .. modified .. readonly .. branch_str
 
-  local right = (diagnostics ~= "" and "  " .. diagnostics or "") .. " L: %l C:%c  %P "
+  local right = "  " .. err_str .. warn_str .. "L: %l C:%c  %P "
 
-  return "%#LineLeft#" .. left .. "%#LineCenter#%=" .. center_content .. "%=" .. "%#LineRight#" .. right
+  return "%#LineLeft#" .. left .. "%#LineCenter#%=" .. center .. "%=" .. "%#LineRight#" .. right
 end
 
 M.inactive = function()
@@ -63,9 +55,9 @@ M.setup = function()
   vim.o.laststatus = 2
 
   local function setup_highlights()
-    vim.api.nvim_set_hl(0, "LineLeft", { link = "DiffText" })
-    vim.api.nvim_set_hl(1, "LineCenter", { link = "SpecialKey" })
-    vim.api.nvim_set_hl(0, "LineRight", { link = "Conceal" })
+    vim.api.nvim_set_hl(1, "LineLeft", { link = "DiffText" })
+    vim.api.nvim_set_hl(0, "LineCenter", { link = "SpecialKey" })
+    vim.api.nvim_set_hl(1, "LineRight", { link = "Conceal" })
   end
 
   setup_highlights()
