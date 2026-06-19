@@ -20,11 +20,6 @@ end
 
 M.active = function()
   local mode = vim.fn.mode():upper()
-  local filename = vim.fn.expand("%f")
-  if filename == "" then filename = "[No Name]" end
-
-  local modified = vim.bo.modified and " ●" or ""
-  local readonly = vim.bo.readonly and " RO" or ""
 
   local branch = get_git_branch()
   local branch_str = branch and " [ " .. branch .. " ]" or ""
@@ -32,14 +27,16 @@ M.active = function()
   local counts = vim.diagnostic.count(0) or {}
   local errors = counts[vim.diagnostic.severity.ERROR] or 0
   local warnings = counts[vim.diagnostic.severity.WARN] or 0
+  local infos = counts[vim.diagnostic.severity.INFO] or 0
 
-  local err_str = "%#DiagnosticError#✘ " .. errors .. "%#LineRight# "
-  local warn_str = "%#DiagnosticWarn#⚠ " .. warnings .. "%#LineRight# "
+  local err_str = "%#DiagnosticError#  " .. errors .. "%#LineRight# "
+  local warn_str = "%#DiagnosticWarn#  " .. warnings .. "%#LineRight# "
+  local info_str = "%#DiagnosticInfo#  " .. infos .. "%#LineRight# "
 
   local left = " " .. mode .. " "
-  local center = filename .. modified .. readonly .. branch_str
+  local center = branch_str .. " " .. err_str .. " " .. warn_str .. " " .. info_str
 
-  local right = "  " .. err_str .. warn_str .. "L: %l C:%c  %P "
+  local right = "L: %l C:%c  %P "
 
   return "%#LineLeft#" .. left .. "%#LineCenter#%=" .. center .. "%=" .. "%#LineRight#" .. right
 end
@@ -56,7 +53,7 @@ M.setup = function()
 
   local function setup_highlights()
     vim.api.nvim_set_hl(1, "LineLeft", { link = "DiffText" })
-    vim.api.nvim_set_hl(0, "LineCenter", { link = "SpecialKey" })
+    vim.api.nvim_set_hl(1, "LineCenter", { link = "SpecialKey" })
     vim.api.nvim_set_hl(1, "LineRight", { link = "Conceal" })
   end
 

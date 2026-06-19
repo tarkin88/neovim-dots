@@ -4,6 +4,7 @@ require("autocmds")
 require("commands")
 require("ui.statusline").setup()
 require("ui.tabline").setup()
+require("ui.winbar")
 
 -- vim.cmd.colorscheme("retrobox")
 
@@ -36,5 +37,4 @@ require("lazy").setup({
 })
 
 require("lsp")
--- require("ui.overrides")
 require("vim._core.ui2").enable({})
