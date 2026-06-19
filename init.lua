@@ -5,8 +5,7 @@ require("commands")
 require("ui.statusline").setup()
 require("ui.tabline").setup()
 
-vim.cmd.colorscheme("retrobox")
-require("ui.overrides")
+-- vim.cmd.colorscheme("retrobox")
 
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -37,4 +36,5 @@ require("lazy").setup({
 })
 
 require("lsp")
+-- require("ui.overrides")
 require("vim._core.ui2").enable({})

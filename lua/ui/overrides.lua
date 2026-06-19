@@ -1,11 +1,11 @@
 vim.api.nvim_set_hl(0, "LspInlayHint", {
-  fg = "#828585",
+  fg = "#e0af68",
   bg = "NONE",
   bold = true,
 })
 
 vim.api.nvim_set_hl(0, "ContextVt", {
-  fg = "#696955",
+  fg = "#737aa2",
   bg = "NONE",
   italic = true,
 })

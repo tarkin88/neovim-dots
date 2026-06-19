@@ -5,14 +5,14 @@ return {
   opts = {
     float = {
       padding = 5,
-      max_width = 0.4,
-      max_height = 0.7,
+      max_width = 80,
+      max_height = 20,
     },
     view_options = {
       show_hidden = true,
     },
   },
   keys = {
-    { "<leader>e", function() require("oil").open_float() end, desc = "Open Oil" },
+    { "<leader>e", function() require("oil").toggle_float() end, desc = "Open Oil" },
   },
 }

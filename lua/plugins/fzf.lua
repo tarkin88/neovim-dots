@@ -41,7 +41,7 @@ return {
     { "<leader>ff", "<cmd>FzfLua files<CR>", desc = "[f]iles" },
     { "<leader>fo", "<cmd>FzfLua oldfiles<CR>", desc = "[o]ld Files" },
     { "<leader>fg", "<cmd>FzfLua live_grep<CR>", desc = "Live [g]rep" },
-    { "<leader>fb", "<cmd>FzfLua buffers<CR>", desc = "[b]buffers" },
+    { "<A-Up>", "<cmd>FzfLua buffers<CR>", desc = "[b]buffers" },
     { "<leader>fh", "<cmd>FzfLua help_tags<CR>", desc = "[h]elp Tags" },
     { "<leader>ld", "<cmd>FzfLua diagnostics_document<CR>", desc = "[d]iagnostics" },
     { "<leader>ls", "<cmd>FzfLua lsp_document_symbols<CR>", desc = "[l]sp symbols" },
