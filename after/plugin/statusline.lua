@@ -124,7 +124,7 @@ api.nvim_create_autocmd("ColorScheme", {
   callback = setup_statusline_highlights,
 })
 
-vim.opt.laststatus = 2
+-- vim.opt.laststatus = 2
 vim.o.statusline = "%!v:lua.Status_line()"
 
 api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {

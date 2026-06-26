@@ -1,4 +1,5 @@
 return {
+  enable = false,
   "rachartier/tiny-inline-diagnostic.nvim",
   event = "BufReadPre",
   priority = 1000,

@@ -1,4 +1,5 @@
 return {
+  enabled = false,
   "stevearc/oil.nvim",
   dependencies = { { "nvim-mini/mini.icons", opts = {} } },
   cmd = { "Oil" },

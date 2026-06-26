@@ -5,7 +5,7 @@
 vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Highlight when yanking (copying) text",
   group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
-  callback = function() vim.highlight.on_yank() end,
+  callback = function() vim.hl.hl_op() end,
 })
 
 -- env file as dosini
@@ -137,7 +137,7 @@ vim.api.nvim_create_autocmd("FileType", {
     )
 
     vim.schedule(function()
-      local answer = vim.fn.confirm("Auto-generate git message with Copilot?", "&Yes\n&No", 1)
+      local answer = vim.fn.confirm("Generate git message with Copilot?", "&Yes\n&No", 1)
       if answer == 1 then require("commands").gen_commit_for_buf(ev.buf) end
     end)
   end,

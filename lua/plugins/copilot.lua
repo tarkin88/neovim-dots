@@ -3,22 +3,17 @@ return {
   cmd = "Copilot",
   build = ":Copilot auth",
   event = "BufReadPost",
-  dependencies = {
-    "copilotlsp-nvim/copilot-lsp",
-  },
   opts = {
     suggestion = {
       auto_trigger = true,
       keymap = {
         accept = false, -- handled by completion engine
+        dismiss = "<Esc>",
       },
     },
     filetypes = {
-      markdown = true,
+      markdown = false,
       ["*"] = true,
-    },
-    completion = {
-      model = "gpt-4o-copilot",
     },
   },
 }

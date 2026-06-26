@@ -31,7 +31,6 @@ return {
       { "<leader>db", function() require("dap").toggle_breakpoint() end, desc = "Debug: Toggle Breakpoint" },
     },
     config = function()
-      local dap = require("dap")
       local dap_python = require("dap-python")
 
       vim.cmd("hi DapBreakpointColor guifg=#E37C68")

@@ -11,5 +11,5 @@ return {
     "sql",
   },
   root_markers = { "postgres-language-server.jsonc" },
-  workspace_required = true,
+  workspace_required = false,
 }
