@@ -45,6 +45,7 @@ return {
     { "<A-Up>", "<cmd>FzfLua buffers<CR>", desc = "[b]buffers" },
     { "<leader>fh", "<cmd>FzfLua help_tags<CR>", desc = "[h]elp Tags" },
     { "<leader>ld", "<cmd>FzfLua diagnostics_document<CR>", desc = "[d]iagnostics" },
+    { "<leader>lw", "<cmd>FzfLua diagnostics_workspace<CR>", desc = "[w]orkspace diagnostics" },
     { "<leader>ls", "<cmd>FzfLua lsp_document_symbols<CR>", desc = "[l]sp symbols" },
   },
 }

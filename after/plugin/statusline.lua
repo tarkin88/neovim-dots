@@ -64,7 +64,6 @@ local function diagnostics()
   local counts = diagnostic.count(0) or {}
   local num_warning = counts[severity.WARN] or 0
   local num_error = counts[severity.ERROR] or 0
-  -- local num_info = counts[severity.INFO] or 0
   local num_hint = counts[severity.HINT] or 0
 
   return table.concat({
@@ -74,10 +73,19 @@ local function diagnostics()
     num_warning,
     "%#DiagnosticHint#   ",
     num_hint,
-    -- "%#DiagnosticInfo#  󰋽 ",
-    -- num_info,
     "%#statusline_separator# ",
   })
+end
+
+local function lsp_status()
+  local clients = vim.lsp.get_clients({ bufnr = 0 })
+  if next(clients) == nil then return "%#statusline_misc# [No LSP] " end
+
+  local lsp_name = clients[1].name
+
+  if vim.b.lsp_loading then return "%#DiagnosticHint#  [ ↻ Loading LSP ] " end
+
+  return "%#statusline_misc# [" .. lsp_name .. "] "
 end
 
 local function debugger_session()
@@ -108,12 +116,12 @@ end
 function Status_line()
   return table.concat({
     current_mode(),
+    diagnostics(),
     separator(),
     git_branch(),
     separator(),
-    diagnostics(),
+    lsp_status(),
     debugger_session(),
-    miscellaneous(),
   })
 end
 

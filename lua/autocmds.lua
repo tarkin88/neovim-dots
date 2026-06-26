@@ -115,7 +115,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 
     -- LSP off
     for _, client in pairs(vim.lsp.get_clients({ bufnr = bufnr })) do
-      client.stop()
+      client:stop(false)
     end
 
     -- Diagnostics off
@@ -140,5 +140,23 @@ vim.api.nvim_create_autocmd("FileType", {
       local answer = vim.fn.confirm("Generate git message with Copilot?", "&Yes\n&No", 1)
       if answer == 1 then require("commands").gen_commit_for_buf(ev.buf) end
     end)
+  end,
+})
+
+vim.api.nvim_create_autocmd("LspProgress", {
+  group = vim.api.nvim_create_augroup("StatuslineLspProgress", { clear = true }),
+  callback = function(ev)
+    local data = ev.data or {}
+    local params = data.params or {}
+    local value = params.value or {}
+    local kind = value.kind
+
+    if kind == "begin" or kind == "report" then
+      vim.b[ev.buf].lsp_loading = true
+    elseif kind == "end" then
+      vim.b[ev.buf].lsp_loading = false
+    end
+
+    vim.cmd("redrawstatus")
   end,
 })
