@@ -7,15 +7,18 @@ return {
     end
     return vim.lsp.rpc.start({ cmd, "--stdio" }, dispatchers)
   end,
+
   filetypes = { "json", "jsonc" },
   init_options = {
     provideFormatter = true,
   },
   root_markers = { ".git" },
-  settings = {
-    json = {
-      validate = { enable = true },
-      schemas = require("schemastore").json.schemas(),
-    },
-  },
+  before_init = function(_, config)
+    config.settings.json = config.settings.json or {}
+    config.settings.json.validate = { enable = true }
+
+    local ok, schemastore = pcall(require, "schemastore")
+    if ok then config.settings.json.schemas = schemastore.json.schemas() end
+  end,
+  settings = {},
 }

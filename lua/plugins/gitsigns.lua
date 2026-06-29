@@ -23,8 +23,9 @@ return {
     },
   },
   keys = {
-    { "<leader>hb", "<cmd>Gitsigns blame_line<CR>", desc = "Blame Line" },
-    { "<leader>hd", "<cmd>Gitsigns diffthis<CR>", desc = "Diff this" },
-    { "<leader>hp", "<cmd>Gitsigns preview_hunk_inline<CR>", desc = "Preview line" },
+    { "<leader>h", "", desc = "[g]it" },
+    { "<leader>hb", "<cmd>Gitsigns blame_line<CR>", desc = "[b]lame Line" },
+    { "<leader>hd", "<cmd>Gitsigns diffthis<CR>", desc = "[d]iff this" },
+    { "<leader>hp", "<cmd>Gitsigns preview_hunk_inline<CR>", desc = "[p]review line" },
   },
 }

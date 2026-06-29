@@ -1,4 +1,5 @@
 return {
   "b0o/schemastore.nvim",
-  lazy = false,
+  ft = { "json", "jsonc", "yaml", "yml" },
+  -- lazy = false,
 }

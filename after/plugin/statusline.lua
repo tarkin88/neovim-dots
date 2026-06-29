@@ -121,7 +121,6 @@ function Status_line()
     git_branch(),
     separator(),
     lsp_status(),
-    debugger_session(),
   })
 end
 

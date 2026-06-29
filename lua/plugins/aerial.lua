@@ -1,6 +1,5 @@
 return {
   "stevearc/aerial.nvim",
-  event = "BufReadPost",
   cmd = { "AerialToggle", "AerialOpen", "AerialClose" },
   dependencies = {
     "nvim-treesitter/nvim-treesitter",
