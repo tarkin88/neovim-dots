@@ -6,18 +6,6 @@ set.wrap = true -- Enable soft line wrapping
 set.linebreak = true -- Wrap lines at words instead of hard characters
 set.breakindent = true -- Maintain indentation when wrapping lines
 
--- 2. Spelling & Language
--- set.spell = true -- Turn on spell checking
--- set.spelllang = "en_us,es_mx" -- Set dictionary language
-
--- 3. Visuals & Concealing
--- set.conceallevel = 2 -- Hide markdown symbols (like **, links) unless editing
-
--- 4. Tabs & Indentation
-set.tabstop = 4 -- Number of spaces that a <Tab> counts for
-set.shiftwidth = 4 -- Number of spaces to use for each step of auto-indent
-set.expandtab = true -- Convert tabs to spaces
-
 -- 5. Define Fenced Code Block Highlighting
 -- Enables full syntax highlighting for language blocks inside triple backticks
 vim.g.markdown_fenced_languages = {
@@ -25,3 +13,21 @@ vim.g.markdown_fenced_languages = {
   "bash",
   "lua",
 }
+
+-- Markdown uses 2-space indentation (matches markdownlint MD007 default).
+-- Overrides the bundled runtime ftplugin which forces tabstop/shiftwidth=4.
+-- Structural correctness (ordered-list continuation, code blocks) is handled
+-- by the formatter (prettier via conform) on save.
+set.expandtab = true
+set.tabstop = 2
+set.softtabstop = 2
+set.shiftwidth = 2
+
+-- Continue list markers on a new line. The bundled markdown ftplugin disables
+-- this (formatoptions-=r -=o, plus an "f" flag that only hanging-indents
+-- instead of repeating the marker). Drop the "f" flag and re-enable r/o so
+-- pressing <CR> (insert) or o/O (normal) on a "- ", "* ", "+ " or "> " line
+-- re-inserts the marker.
+set.comments = "b:-,b:*,b:+,n:>"
+set.formatoptions:append("r")
+set.formatoptions:append("o")

@@ -70,7 +70,7 @@ vim.lsp.config("*", {
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {
-  group = vim.api.nvim_create_augroup("my-lsp-features", { clear = false }),
+  group = vim.api.nvim_create_augroup("lsp-features", { clear = false }),
   callback = function(event)
     local client = vim.lsp.get_client_by_id(event.data.client_id)
     if not client then return end
@@ -138,13 +138,13 @@ vim.lsp.enable(servers)
 local map = vim.keymap.set
 
 map("n", "grf", vim.lsp.buf.format, { desc = "Format buffer" })
-map("n", "gd", vim.lsp.buf.definition, { desc = "[d]definitions" })
-map("n", "gD", vim.lsp.buf.declaration, { desc = "[D]eclarations" })
+-- map("n", "gd", vim.lsp.buf.definition, { desc = "[d]definitions" })
+-- map("n", "gD", vim.lsp.buf.declaration, { desc = "[D]eclarations" })
 -- map("n", "gr", vim.lsp.buf.references, { desc = "[r]eferences" })
 map("n", "K", vim.lsp.buf.hover, { desc = "Hover" })
 map("n", "gK", vim.lsp.buf.signature_help, { desc = "Signature Help" })
 map("n", "<leader>l", "", { desc = "[l]sp" })
-map("n", "<leader>la", vim.lsp.buf.code_action, { desc = "Code lens action" })
+-- map("n", "<leader>la", vim.lsp.buf.code_action, { desc = "Code lens action" })
 map("n", "<leader>lr", vim.lsp.buf.rename, { desc = "[r]ename" })
 map("n", "<F2>", vim.lsp.buf.rename, { desc = "Rename" })
 map("n", "gl", vim.diagnostic.open_float, { desc = "Open diagnostics float" })

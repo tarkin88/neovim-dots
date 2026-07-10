@@ -1,10 +1,12 @@
 return {
   "saghen/blink.cmp",
   version = "1.*",
+  build = "cargo build --release",
   dependencies = {
     {
       "saghen/blink.pairs",
       version = "*",
+      build = function() require("blink.pairs").build():pwait(60000) end,
       dependencies = "saghen/blink.download",
       opts = {
         mappings = {

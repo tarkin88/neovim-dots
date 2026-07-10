@@ -32,8 +32,9 @@ return {
     },
   },
   config = function(_, opts)
-    require("fzf-lua").setup(opts)
-    require("fzf-lua").register_ui_select()
+    local fzf = require("fzf-lua")
+    fzf.setup(opts)
+    fzf.register_ui_select()
   end,
   keys = {
     { "<leader>f", "", desc = "Search" },
@@ -44,11 +45,14 @@ return {
     { "<leader>fo", "<cmd>FzfLua oldfiles<CR>", desc = "[o]ld Files" },
     { "<leader>fg", "<cmd>FzfLua live_grep<CR>", desc = "Live [g]rep" },
     { "<leader>hw", "<cmd>FzfLua git_worktrees<CR>", desc = "[w]orktrees" },
-
     { "<leader>fw", "<cmd>FzfLua grep_cWORD<CR>", desc = "grep [w]ord" },
     { "<A-Up>", "<cmd>FzfLua buffers<CR>", desc = "[b]buffers" },
     { "<leader>ld", "<cmd>FzfLua diagnostics_document<CR>", desc = "[d]iagnostics" },
     { "<leader>lw", "<cmd>FzfLua diagnostics_workspace<CR>", desc = "[w]orkspace diagnostics" },
     { "<leader>ls", "<cmd>FzfLua lsp_document_symbols<CR>", desc = "[l]sp symbols" },
+    { "gd", "<cmd>FzfLua lsp_definitions<CR>", desc = "go to [d]definitions" },
+    { "gD", "<cmd>FzfLua lsp_declarations<CR>", desc = "go to [D]eclarations" },
+    { "gr", "<cmd>FzfLua lsp_references<CR>", desc = "go to [r]eferences" },
+    { "<leader>la", "<cmd>FzfLua lsp_code_actions<CR>", desc = "code [a]ctions" },
   },
 }

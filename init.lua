@@ -2,11 +2,6 @@ require("options")
 require("mappings")
 require("autocmds")
 require("commands")
--- require("ui.statusline")
--- require("ui.tabline").setup()
--- require("ui.winbar")
-
--- vim.cmd.colorscheme("retrobox")
 
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -28,9 +23,6 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   spec = {
     { import = "plugins" },
-  },
-  install = {
-    colorscheme = { "retrobox" },
   },
   defaults = { lazy = true },
   checker = { enabled = true, concurrency = 2 },

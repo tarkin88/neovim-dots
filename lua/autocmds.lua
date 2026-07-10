@@ -143,6 +143,7 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- LSP progress indicator for statusline
 vim.api.nvim_create_autocmd("LspProgress", {
   group = vim.api.nvim_create_augroup("StatuslineLspProgress", { clear = true }),
   callback = function(ev)

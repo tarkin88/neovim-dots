@@ -81,11 +81,16 @@ local function lsp_status()
   local clients = vim.lsp.get_clients({ bufnr = 0 })
   if next(clients) == nil then return "%#statusline_misc# [No LSP] " end
 
-  local lsp_name = clients[1].name
+  local names = {}
+  for _, client in ipairs(clients) do
+    table.insert(names, client.name)
+  end
 
-  if vim.b.lsp_loading then return "%#DiagnosticHint#  [ ↻ Loading LSP ] " end
+  local lsp_names = table.concat(names, ", ")
 
-  return "%#statusline_misc# [" .. lsp_name .. "] "
+  if vim.b.lsp_loading then return "%#DiagnosticHint# [ ↻ Loading LSP ] " end
+
+  return "%#statusline_misc# [" .. lsp_names .. "] "
 end
 
 local function debugger_session()
