@@ -4,7 +4,12 @@ local M = {}
 -- Generates an AI-powered commit message suggestion.
 -- @return string: The suggested commit message.
 local function get_ai_commit_message()
-  local diff = vim.fn.system("rtk git diff --cached")
+  local has_rtk = vim.fn.executable("rtk") == 1
+  if not has_rtk then
+    diff = vim.fn.system("git diff --cached")
+  else
+    diff = vim.fn.system("rtk git diff --cached")
+  end
   -- local diff = vim.fn.system("git diff --minimal --cached")
   if vim.v.shell_error ~= 0 or diff == "" then return nil, "No staged changes" end
 
@@ -64,6 +69,12 @@ Diff:
 
   return lines, nil
 end
+
+vim.api.nvim_create_user_command(
+  "GenCommit",
+  function() M.gen_commit_for_buf() end,
+  { desc = "Generate commit message with Copilot CLI" }
+)
 
 function M.gen_commit_for_buf(bufnr)
   bufnr = bufnr or vim.api.nvim_get_current_buf()
