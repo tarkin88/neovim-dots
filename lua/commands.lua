@@ -4,7 +4,8 @@ local M = {}
 -- Generates an AI-powered commit message suggestion.
 -- @return string: The suggested commit message.
 local function get_ai_commit_message()
-  local diff = vim.fn.system("git diff --cached")
+  local diff = vim.fn.system("rtk git diff --cached")
+  -- local diff = vim.fn.system("git diff --minimal --cached")
   if vim.v.shell_error ~= 0 or diff == "" then return nil, "No staged changes" end
 
   local prompt = [[
@@ -24,7 +25,8 @@ Given the following git diff, write the commit message:
 Diff:
 ]] .. diff
 
-  local cmd = { "copilot", "-p", prompt, "--model", "gpt-5-mini" }
+  -- local cmd = { "copilot", "-p", prompt, "--model", "gpt-5-mini" }
+  local cmd = { "copilot", "-p", prompt }
 
   local raw = vim.fn.systemlist(cmd)
   if vim.v.shell_error ~= 0 or not raw or #raw == 0 then return nil, "Error calling copilot-cli" end
@@ -49,6 +51,7 @@ Diff:
       or trimmed:match("^Usage by model:")
       or trimmed:match("^gpt%-5%-mini")
       or trimmed:match("^API time spent:")
+      or trimmed:match("^AI Credits")
       or trimmed:match("^Total session time:")
       or trimmed:match("^Breakdown by AI model:")
       or trimmed:match("^Resume")

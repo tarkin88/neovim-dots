@@ -1,7 +1,7 @@
 return {
   "ibhagwan/fzf-lua",
   cmd = "FzfLua",
-  dependencies = { "nvim-mini/mini.icons" },
+  dependencies = { "nvim-tree/nvim-web-devicons" },
   opts = {
     winopts = {
       height = 0.45,
@@ -18,7 +18,7 @@ return {
         "%.git/COMMIT_EDITMSG",
       },
       git_icons = true,
-      file_icons = "mini",
+      file_icons = "devicons",
     },
     oldfiles = {
       file_icons = "mini",

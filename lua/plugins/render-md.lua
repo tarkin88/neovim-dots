@@ -1,7 +1,7 @@
 return {
   "MeanderingProgrammer/render-markdown.nvim",
   ft = { "markdown", "md" },
-  dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-mini/mini.icons" },
+  dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
   opts = {
     preset = "obsidian",
   },
