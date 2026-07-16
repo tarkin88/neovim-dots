@@ -37,11 +37,12 @@ return {
     fzf.register_ui_select()
   end,
   keys = {
-    { "<leader>f", "", desc = "Search" },
+    { "<leader>f", "", desc = "[f]zf search" },
     { "<leader><leader>", "<cmd>FzfLua files<CR>", desc = "Smart Search" },
     { "<C-p>", "<cmd>FzfLua global<CR>", desc = "VSLike" },
     { "<leader>fa", "<cmd>FzfLua<CR>", desc = "[a]ll" },
     { "<leader>ff", "<cmd>FzfLua files<CR>", desc = "[f]iles" },
+    { "<leader>/", "<cmd>FzfLua grep_curbuf<CR>", desc = "Search in current buffer" },
     { "<leader>fo", "<cmd>FzfLua oldfiles<CR>", desc = "[o]ld Files" },
     { "<leader>fg", "<cmd>FzfLua live_grep<CR>", desc = "Live [g]rep" },
     { "<leader>hw", "<cmd>FzfLua git_worktrees<CR>", desc = "[w]orktrees" },
