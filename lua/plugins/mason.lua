@@ -39,4 +39,7 @@ return {
       if not p:is_installed() then p:install() end
     end
   end,
+  keys = {
+    { "<leader>um", "<cmd>Mason<cr>", desc = "[m]ason" },
+  },
 }

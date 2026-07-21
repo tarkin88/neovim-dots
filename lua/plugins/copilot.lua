@@ -1,5 +1,8 @@
 return {
   "zbirenbaum/copilot.lua",
+  dependencies = {
+    "copilotlsp-nvim/copilot-lsp",
+  },
   -- enabled = false,
   cmd = "Copilot",
   build = ":Copilot auth",
