@@ -10,8 +10,9 @@ map("n", "<Leader>tr", "<Cmd> set relativenumber! <CR>", { desc = "Toggle relati
 map("n", "<Leader>_", "<cmd>vsplit<CR>", opts) -- Split the window vertically
 map("n", "<Leader>-", "<cmd>split<CR>", opts) -- Split the window horizontally
 
-map("n", "<Leader>c", "", { desc = "s[c]ratchpad" })
-map("n", "<Leader>cs", "<cmd>Scratchpad<cr>", { desc = "[s]cratchpad" })
+map("n", "<Leader>s", "", { desc = "s[c]ratchpad" })
+map("n", "<Leader>ss", "<cmd>Scratchpad<cr>", { desc = "[s]cratchpad" })
+map("n", "<Leader>sl", "<cmd>ListScratchpads<cr>", { desc = "[l]ist cratchpads" })
 
 map("n", "<Leader>t", "", { desc = "[t]abs" })
 map("n", "<Leader>te", "<cmd>tabnew<CR>", opts) -- Open a new tab

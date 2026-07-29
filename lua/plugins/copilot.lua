@@ -3,7 +3,6 @@ return {
   dependencies = {
     "copilotlsp-nvim/copilot-lsp",
   },
-  -- enabled = false,
   cmd = "Copilot",
   build = ":Copilot auth",
   event = "BufReadPost",

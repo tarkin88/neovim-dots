@@ -126,16 +126,90 @@ function M.scratchpad()
   local dir = vim.fn.expand("~/.local/share/scratchpads/" .. month_dir)
   local file = dir .. "/" .. day_file
   local header = "# " .. os.date("%d-%m-%y")
+  local todo_header = "## TODO"
+  local todo_item = " - [] "
 
   vim.fn.mkdir(dir, "p")
 
-  if vim.fn.filereadable(file) == 0 then vim.fn.writefile({ header, "" }, file) end
+  if vim.fn.filereadable(file) == 0 then vim.fn.writefile({ header, "", todo_header, "", todo_item }, file) end
 
   vim.cmd.edit(vim.fn.fnameescape(file))
 end
 
 vim.api.nvim_create_user_command("Scratchpad", M.scratchpad, {
   desc = "Open today's scratchpad",
+})
+
+local function tail(path) return vim.fn.fnamemodify(path, ":t") end
+
+local function select_scratchpad_files(files, prompt)
+  vim.ui.select(files, {
+    prompt = prompt,
+    format_item = tail,
+  }, function(choice)
+    if choice then vim.cmd.edit(vim.fn.fnameescape(choice)) end
+  end)
+end
+
+function M.list_scratchpads()
+  local root = vim.fn.expand("~/.local/share/scratchpads/")
+  local month_dirs = vim.tbl_filter(
+    function(path) return vim.fn.isdirectory(path) == 1 end,
+    vim.fn.globpath(root, "*", 0, 1)
+  )
+  local scratchpads = {}
+
+  for _, month_dir in ipairs(month_dirs) do
+    local day_files = vim.fn.globpath(month_dir, "*.md", 0, 1)
+    for _, day_file in ipairs(day_files) do
+      table.insert(scratchpads, day_file)
+    end
+  end
+
+  table.sort(scratchpads, function(a, b) return tail(a) > tail(b) end)
+  table.sort(month_dirs, function(a, b) return tail(a) > tail(b) end)
+
+  local items = {}
+  for i = 1, math.min(5, #scratchpads) do
+    table.insert(items, { kind = "file", path = scratchpads[i] })
+  end
+  for _, month_dir in ipairs(month_dirs) do
+    table.insert(items, { kind = "dir", path = month_dir })
+  end
+
+  if #items == 0 then
+    vim.notify("No scratchpads found in " .. root, vim.log.levels.WARN)
+    return
+  end
+
+  vim.ui.select(items, {
+    prompt = "Select a scratchpad to open:",
+    format_item = function(item)
+      if item.kind == "dir" then return tail(item.path) .. "/" end
+      return tail(item.path)
+    end,
+  }, function(choice)
+    if not choice then return end
+
+    if choice.kind == "file" then
+      vim.cmd.edit(vim.fn.fnameescape(choice.path))
+      return
+    end
+
+    local day_files = vim.fn.globpath(choice.path, "*.md", 0, 1)
+    table.sort(day_files, function(a, b) return tail(a) > tail(b) end)
+
+    if #day_files == 0 then
+      vim.notify("No scratchpads in " .. tail(choice.path), vim.log.levels.WARN)
+      return
+    end
+
+    select_scratchpad_files(day_files, tail(choice.path) .. " scratchpads:")
+  end)
+end
+
+vim.api.nvim_create_user_command("ListScratchpads", M.list_scratchpads, {
+  desc = "List all scratchpads",
 })
 
 return M

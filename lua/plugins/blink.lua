@@ -57,7 +57,25 @@ return {
       preset = "super-tab",
       ["<Tab>"] = {
         "snippet_forward",
-        function() require("copilot.suggestion").accept_line() end,
+        function()
+          local ok, nes = pcall(require, "copilot-lsp.nes")
+          if not ok or not vim.b[vim.api.nvim_get_current_buf()].nes_state then return end
+          if nes.walk_cursor_start_edit() then return true end
+          if nes.apply_pending_nes() then
+            nes.walk_cursor_end_edit()
+            return true
+          end
+        end,
+        function()
+          local suggestion = require("copilot.suggestion")
+          if not suggestion.is_visible() then return end
+          suggestion.accept_line()
+          return true
+        end,
+        function(cmp)
+          if cmp.snippet_active() then return cmp.accept() end
+          return cmp.select_and_accept()
+        end,
         "fallback",
       },
       ["<S-Tab>"] = { "snippet_backward", "fallback" },
