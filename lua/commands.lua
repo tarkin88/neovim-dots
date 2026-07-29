@@ -120,4 +120,22 @@ function M.toggle_netrw()
   end
 end
 
+function M.scratchpad()
+  local month_dir = os.date("%m-%y")
+  local day_file = os.date("%d-%m-%y") .. ".md"
+  local dir = vim.fn.expand("~/.local/share/scratchpads/" .. month_dir)
+  local file = dir .. "/" .. day_file
+  local header = "# " .. os.date("%d-%m-%y")
+
+  vim.fn.mkdir(dir, "p")
+
+  if vim.fn.filereadable(file) == 0 then vim.fn.writefile({ header, "" }, file) end
+
+  vim.cmd.edit(vim.fn.fnameescape(file))
+end
+
+vim.api.nvim_create_user_command("Scratchpad", M.scratchpad, {
+  desc = "Open today's scratchpad",
+})
+
 return M

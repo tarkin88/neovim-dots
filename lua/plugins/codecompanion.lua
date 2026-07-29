@@ -1,6 +1,6 @@
 return {
   "olimorris/codecompanion.nvim",
-  enabled = false,
+  version = "^19.0.0",
   cmd = {
     "CodeCompanion",
     "CodeCompanionActions",
@@ -9,45 +9,53 @@ return {
     "CodeCompanionCLI",
   },
   dependencies = {
-    "nvim-lua/plenary.nvim",
+    { "nvim-lua/plenary.nvim", branch = "master" },
     "nvim-treesitter/nvim-treesitter",
     "ravitemer/mcphub.nvim",
-    {
-      "MeanderingProgrammer/render-markdown.nvim",
-      ft = { "markdown", "codecompanion" },
-    },
+    "MeanderingProgrammer/render-markdown.nvim",
   },
   opts = {
+    display = {
+      chat = {
+        show_settings = true,
+      },
+    },
     extensions = {
       mcphub = {
         callback = "mcphub.extensions.codecompanion",
         opts = {
-          make_vars = true,
+          make_vars = false,
           make_slash_commands = true,
           show_result_in_chat = true,
+          make_slash_commands = true,
         },
       },
     },
     interactions = {
       chat = {
-        adapter = "copilot",
+        adapter = "claude_code",
         model = "claude-sonnet",
-        variables = {},
       },
       inline = {
-        adapter = "copilot",
+        adapter = "claude_code",
         model = "claude-sonnet",
       },
       cli = {
         agent = "claude_code",
-        agents = {
-          claude_code = {
-            cmd = "claude",
-            args = {},
-            description = "Claude Code CLI",
-            provider = "terminal",
-          },
-        },
+      },
+    },
+    adapters = {
+      acp = {
+        claude_code = function()
+          return require("codecompanion.adapters").extend("claude_code", {
+            env = {
+              CLAUDE_CODE_OAUTH_TOKEN = vim.env.CLAUDE_CODE_OAUTH_TOKEN,
+            },
+            defaults = {
+              mcpServers = "inherit_from_config",
+            },
+          })
+        end,
       },
     },
     prompt_library = {
