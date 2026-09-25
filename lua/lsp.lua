@@ -126,7 +126,7 @@ local servers = {
   "docker_language_server",
   "jsonls",
   "lua_ls",
-  "markdown-oxide",
+  "marksman",
   "postgres_lsp",
   "ruff",
   "taplo",
@@ -138,9 +138,6 @@ vim.lsp.enable(servers)
 local map = vim.keymap.set
 
 map("n", "grf", vim.lsp.buf.format, { desc = "Format buffer" })
--- map("n", "gd", vim.lsp.buf.definition, { desc = "[d]definitions" })
--- map("n", "gD", vim.lsp.buf.declaration, { desc = "[D]eclarations" })
--- map("n", "gr", vim.lsp.buf.references, { desc = "[r]eferences" })
 map("n", "K", vim.lsp.buf.hover, { desc = "Hover" })
 map("n", "gK", vim.lsp.buf.signature_help, { desc = "Signature Help" })
 map("n", "<leader>l", "", { desc = "[l]sp" })

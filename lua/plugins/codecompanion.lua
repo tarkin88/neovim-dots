@@ -19,6 +19,9 @@ return {
       chat = {
         show_settings = true,
       },
+      diff = {
+        provider = "default",
+      },
     },
     extensions = {
       mcphub = {
@@ -61,7 +64,7 @@ return {
     prompt_library = {
       markdown = {
         dirs = {
-          vim.fn.getcwd() .. "/prompts", -- Can be relative
+          vim.fn.getcwd() .. "/prompts",
         },
       },
     },
@@ -69,12 +72,6 @@ return {
       default = {
         description = "Collection of common files for all projects",
         files = {
-          ".clinerules",
-          ".cursorrules",
-          ".goosehints",
-          ".rules",
-          ".windsurfrules",
-          ".github/copilot-instructions.md",
           "AGENT.md",
           "AGENTS.md",
           { path = "CLAUDE.md", parser = "claude" },
@@ -85,7 +82,7 @@ return {
       },
       opts = {
         chat = {
-          autoload = "default", -- The rule groups to load
+          autoload = "default",
           enabled = true,
         },
       },

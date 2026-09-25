@@ -1,21 +1,12 @@
 return {
-  "loctvl842/monokai-pro.nvim",
-  dependencies = { "nvim-tree/nvim-web-devicons" },
+  "rose-pine/neovim",
+  name = "rose-pine",
   lazy = false,
   priority = 1000,
-  config = function()
-    require("monokai-pro").setup({
-      filter = "octagon",
-      devicons = true,
-      override = function(scheme)
-        return {
-          LspInlayHint = { fg = scheme.base.dimmed1, bg = "NONE", bold = true, italic = true },
-          LspCodeLens = { fg = scheme.base.cyan, bg = "NONE", bold = true },
-          ContextVt = { fg = scheme.base.dimmed4, bg = "NONE", italic = true },
-        }
-      end,
-    })
+  opts = { dim_inactive_windows = false },
+  config = function(_, opts)
+    require("rose-pine").setup(opts)
 
-    vim.cmd.colorscheme("monokai-pro-octagon")
+    vim.cmd.colorscheme("rose-pine-dawn")
   end,
 }
